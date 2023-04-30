@@ -17,10 +17,27 @@ class CSVImportExport:
     parse_csv_contents:
         Saves down list of movie titles from the uploaded csv..
     '''
+
     def __init__(self):
+        '''
+        Constructs all the necessary attributes for the CSVImportExport object.
+        '''
         self.imported_movie_list = None
 
     def parse_csv_contents(self, contents, filename):
+        '''This function reads in a csv file into the dash app.
+        
+        Parameters:
+        
+        contents: 
+            Contents of the csv file that was uploaded.
+
+        filename: str
+            Name of the csv file that was uploaded.
+            
+        Returns: 
+            Does not return anything. Saves down movies as list attribute to the CSVImportExport object.
+        '''
         content_type, content_string = contents.split(',')
         decoded = base64.b64decode(content_string)
 

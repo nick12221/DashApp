@@ -1,1 +1,16 @@
+#choose-movies-form-id {width: 40%;
+			align:center;
+			background-color:#E5EFF0;
+			border-style:double;
+			border-width:medium;
+			height: 400px;
+			padding: 8px;}
 
+#import-movie-data-row-id {display:flex;
+				align-items: center;
+				justify-content: center;}
+
+#upload-csv-container-id {width:50%;}
+
+
+#movie-dropdown-container-id {width:50%;}
