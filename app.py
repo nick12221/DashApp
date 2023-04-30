@@ -12,11 +12,14 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = html.Div(id='dash-app-id', children=[
     dcc.Tabs([
         dcc.Tab(label=tab_one_label, id='tab-one-id', children=[
+            welcome_form,
             html.Div(id='import-movie-data-row-id', children=[
-                 confirm_movies_form
+                confirm_movies_form
             ])
-        ])
-    ])  
+        ]),
+        dcc.Tab(label=tab_two_label, id='tab-two-id', children=[
+        ])  
+    ])
 ])
 
 def open_browser():

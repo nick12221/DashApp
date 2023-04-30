@@ -2,9 +2,14 @@ upload_excel_message = 'Upload CSV of movie titles'
 
 csv_import_error_message = 'Can only upload a CSV file'
 
-enter_movie_instruction_label = 'Please either select the movies from the dropdown list or upload a csv file to determine what movie data you want to pull.'
+enter_movie_instruction_label = 'Import Movie Data Form'
 
 tab_one_label = 'Import Movie Data'
+tab_two_label = 'Movie Descriptive Analytics'
+
+movie_selection_dropdown_placeholder = 'Select movies to import'
+
+welcome_message = 'Welcome to the Movie Analytics Application!'
 
 #For business, I would save this down in a database
 top_1000_movies_list = [

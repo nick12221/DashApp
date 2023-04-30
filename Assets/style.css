@@ -1,16 +1,51 @@
-#choose-movies-form-id {width: 40%;
-			align:center;
-			background-color:#E5EFF0;
-			border-style:double;
-			border-width:medium;
-			height: 400px;
-			padding: 8px;}
+#welcome-message-form-id {align:center;
+				font-weight:bold;
+				height:100px;
+				border-style:solid;
+				padding:4px;
+				background-color:#f26202;
+				border-color:#11c1f2;
+				text-align:center;
+				font-size:54px;
+				border-width:5px;}
+
+#choose-movie-label-id {text-align:left;
+			font-weight:bold;
+			font-size:24px;}
+
 
 #import-movie-data-row-id {display:flex;
 				align-items: center;
 				justify-content: center;}
 
-#upload-csv-container-id {width:50%;}
+#choose-movies-form-id {width: 50%;
+			align:center;
+			background-color:#E5EFF0;
+			border-style:double;
+			border-width:medium;
+			height: 250px;
+			padding: 8px;
+			border-width:15px;}
+
+.tab--selected {background-color:#323232 !important;
+		border-top-color: #29B0C3 !important;
+		color:#abc432 !important;
+		padding: 8px 10px 2px 10px !important;}
+
+#upload-csv-container-id {width:50%;
+				border-style:solid;
+				border-radius:10px;
+				text-align:center;
+				background-color:#d3d5e0;}
 
 
-#movie-dropdown-container-id {width:50%;}
+#movie-dropdown-container-id {width:50%;
+				border-radius:10px;}
+
+
+
+
+
+
+
+
