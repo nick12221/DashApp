@@ -13,6 +13,7 @@ app.layout = html.Div(id='dash-app-id', children=[
     dcc.Tabs([
         dcc.Tab(label=tab_one_label, id='tab-one-id', children=[
             welcome_form,
+            instruction_capabilities_forms,
             html.Div(id='import-movie-data-row-id', children=[
                 confirm_movies_form
             ])

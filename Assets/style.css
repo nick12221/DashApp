@@ -9,6 +9,27 @@
 				font-size:54px;
 				border-width:5px;}
 
+#instructions-form-id {width:50%;
+				border-style:solid;
+				text-align:left;
+				background-color:#F3FFF5;
+				background-image:
+				radial-gradient(#FFF6E7 9px, transparent 10px),
+				repeating-radial-gradient(#FFF6E7 0, #FFF6E7 4px, transparent 5px, transparent 20px, #FFF6E7 21px, #FFF6E7 25px, transparent 26px, transparent 50px);
+				background-size: 30px 30px, 90px 90px;
+				background-position: 0 0;}
+
+#capabilities-form-id {width:50%;
+				border-style:solid;
+				text-align:left;
+				background:
+radial-gradient(#E6FFFE 15%, transparent 16%) 0 0,
+radial-gradient(#E6FFFE 15%, transparent 16%) 8px 8px,
+radial-gradient(#DFFFDC 15%, transparent 20%) 0 1px,
+radial-gradient(#DFFFDC 15%, transparent 20%) 8px 9px;
+background-color:#F7E6FF;
+background-size:16px 16px;}
+
 #choose-movie-label-id {text-align:left;
 			font-weight:bold;
 			font-size:24px;}
@@ -23,7 +44,7 @@
 			background-color:#E5EFF0;
 			border-style:double;
 			border-width:medium;
-			height: 250px;
+			height: 200px;
 			padding: 8px;
 			border-width:15px;}
 
@@ -39,9 +60,20 @@
 				background-color:#d3d5e0;}
 
 
-#movie-dropdown-container-id {width:50%;
-				border-radius:10px;}
 
+
+#import-movie-data-container-id {width:50%;}
+
+#import-movies-api-id {border-style:solid;
+			border-radius:10px;
+			text-align:center;
+			background-color:#d3d5e0;}
+
+#instructions-for-app-id {font-weight:bold;
+				font-size:20px;}
+
+#capabilities-for-app-id{font-weight:bold;
+			font-size:20px}
 
 
 
