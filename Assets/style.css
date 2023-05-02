@@ -1,3 +1,6 @@
+#title-page-id {background-image: url("/assets/cover_picture.jpg");
+		height: 100vh;}
+
 #welcome-message-form-id {align:center;
 				font-weight:bold;
 				height:100px;
@@ -53,21 +56,11 @@ background-size:16px 16px;}
 		color:#abc432 !important;
 		padding: 8px 10px 2px 10px !important;}
 
-#upload-csv-container-id {width:50%;
-				border-style:solid;
-				border-radius:10px;
-				text-align:center;
-				background-color:#d3d5e0;}
-
-
+#upload-csv-container-id {width:50%;}
 
 
 #import-movie-data-container-id {width:50%;}
 
-#import-movies-api-id {border-style:solid;
-			border-radius:10px;
-			text-align:center;
-			background-color:#d3d5e0;}
 
 #instructions-for-app-id {font-weight:bold;
 				font-size:20px;}
@@ -75,9 +68,22 @@ background-size:16px 16px;}
 #capabilities-for-app-id{font-weight:bold;
 			font-size:20px}
 
+#upload-excel-movie-list-id {height:50px;
+				width:300px;
+				border-style:solid;
+				border-radius:10px;
+				text-align:center;
+				background-color:#d3d5e0;
+				display: flex;
+  				align-items: center;
+				justify-content:center;}
 
 
-
-
-
+#import-movies-api-id {height:50px;
+			text-align:center;;
+			width:300px;
+			border-style:solid;
+			border-radius:10px;
+			text-align:center;
+			background-color:#d3d5e0;}
 

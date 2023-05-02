@@ -7,7 +7,7 @@ import dash_bootstrap_components as dbc
 store_movie_data = dcc.Store(id='store-movie-data-id')
 
 upload_movie_button= dcc.Upload(id='upload-excel-movie-list-id', children=html.Div([
-                                html.A(upload_csv_message)
+                                html.A(upload_file_message)
                                 ])
                             )
 
@@ -41,9 +41,9 @@ welcome_form = dbc.Form(
 instructions_pulling_movies_form = dbc.Form(id='instructions-for-app-id',
                                             children=[
                                                 dcc.Markdown('''
-                                                * Please upload a CSV with one column with the movies you want to pull from the OMDB API. App only allows for pulling 1,000 movies per day.
+                                                * Please upload a CSV or excel with one column for the movies you want to pull from the OMDB API. App only allows for pulling 1,000 movies per day. Please click the "import" button to pull the data into the app.
 
-                                                * The second tab will allow you to select charts and type of descriptive analytics to do.
+                                                * The second tab will allow you to perform descriptive analytics to do.
 
                                                 * The third tab is responsible for statistical learning, where the user can build their own linear regression model.
 
