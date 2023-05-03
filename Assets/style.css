@@ -68,7 +68,7 @@ background-size:16px 16px;}
 #capabilities-for-app-id{font-weight:bold;
 			font-size:20px}
 
-#upload-excel-movie-list-id {height:50px;
+#upload-movie-list-btn-id {height:50px;
 				width:300px;
 				border-style:solid;
 				border-radius:10px;
@@ -79,7 +79,7 @@ background-size:16px 16px;}
 				justify-content:center;}
 
 
-#import-movies-api-id {height:50px;
+#import-movies-api-btn-id {height:50px;
 			text-align:center;;
 			width:300px;
 			border-style:solid;

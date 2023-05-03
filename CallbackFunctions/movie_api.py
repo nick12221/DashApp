@@ -1,5 +1,8 @@
 import requests
 import json
+from config import *
+import dash
+from dash.dependencies import Input, Output, State
 
 class MovieRequests:
     '''This class is for connecting to the OMDB API.
@@ -51,4 +54,29 @@ class MovieRequests:
                 self.invalid_movies_list.append(i)
             else:
                 self.movie_info_list.append(movie_dict)
-            
+
+    def import_movie_data_app(self, app):
+        @app.callback(Output('store-movie-data-id', 'data'),
+            Output('pull-movie-modal-position-id', 'is_open'),
+            Output('pull-movie-modal-title-id', 'children'),
+            Output('pull-movie-modal-message-id', 'children'),
+            Output('loading-pulling-down-movie-info-id', 'children'),
+            State('store-movie-list-id', 'data'),
+            Input('import-movies-api-btn-id', 'n_clicks'))
+        
+        def nested_import_api_data(movie_list, api_btn_clicks):
+            change_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+            if api_btn_clicks == 0:
+                raise dash.exceptions.PreventUpdate()
+            elif 'import-movies-api-btn-id' in change_id:
+                try:
+                    self.get_movie_data(movie_list)
+                except Exception as e:
+                    return None, True, error_title, str(e)
+
+                if len(self.invalid_movies_list) > 0:
+                    invalid_movies = ', '.join(self.invalid_movies_list)
+                    num_movies_imported = str(len(self.movie_info_list))
+                    return self.movie_info_list, True, success_title, num_movies_imported+modal_message_movies_imported+modal_message_wrong_movies+invalid_movies, None
+                else:
+                    return self.movie_info_list, True, success_title, num_movies_imported+modal_message_movies_imported, None

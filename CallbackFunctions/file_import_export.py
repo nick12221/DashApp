@@ -56,16 +56,16 @@ class FileImportExport:
             raise str(e)
         
     def app_upload_file(self, app):
-        @app.callback(Output('store-movie-data-id', 'data'),
-            State('upload-excel-movie-list-id', 'filename'),
-            Input('upload-excel-movie-list-id', 'contents'))
+        @app.callback(Output('store-movie-list-id', 'data'),
+            State('upload-movie-list-btn-id', 'filename'),
+            Input('upload-movie-list-btn-id', 'contents'))
 
 
         def nested_upload(names, contents):
             change_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
             if contents is None:
                 raise dash.exceptions.PreventUpdate()
-            elif 'upload-excel-movie-list-id' in change_id:
+            elif 'upload-movie-list-btn-id' in change_id:
                 self.parse_file_contents(contents, names)
                 return self.uploaded_movie_list
             else:

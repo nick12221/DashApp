@@ -6,9 +6,12 @@ from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from CallbackFunctions.file_import_export import *
+from CallbackFunctions.movie_api import *
 from TabOneComponents.tab_one_components import *
 
+#initialize class objects
 FileImportExport = FileImportExport()
+APIRquest = MovieRequests()
 
 #Initialize app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -30,6 +33,7 @@ app.layout = html.Div(id='dash-app-id', children=[
 
 
 FileImportExport.app_upload_file(app)
+APIRquest.import_movie_data_app(app)
 
 def open_browser():
     webbrowser.open_new('http://127.0.0.1:8050/')

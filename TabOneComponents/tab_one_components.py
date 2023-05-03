@@ -4,15 +4,20 @@ from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
-store_movie_data = dcc.Store(id='store-movie-data-id')
+store_movie_list = dcc.Store(id='store-movie-list-id')
 
-upload_movie_button= dcc.Upload(id='upload-excel-movie-list-id', children=html.Div([
+store_omdb_data = dcc.Store(id='store-movie-data-id')
+
+loading_api_pull = dcc.Loading(id='loading-pulling-down-movie-info-id',
+                               type="circle")
+
+upload_movie_button= dcc.Upload(id='upload-movie-list-btn-id', children=html.Div([
                                 html.A(upload_file_message)
                                 ])
                             )
 
 import_movie_api_data_btn = html.Button(import_movie_api_message,
-                                        id='import-movies-api-id',
+                                        id='import-movies-api-btn-id',
                                         n_clicks=0)
 
 pull_movie_info_modal = html.Div([
@@ -56,7 +61,7 @@ capabilities_form = dbc.Form(id='capabilities-for-app-id',
                                                 dcc.Markdown('''
                                                 * Pull any movie info through the app. 
                                         
-                                                * Rich functionality for analyzing and visualizing the data.
+                                                * Rich functionality for clustering and visualizing data.
                                          
                                                 * Suite of statistical testing and modelling movie characteristics.
                                                 
@@ -79,7 +84,8 @@ instruction_capabilities_forms = dbc.Row([
 
 confirm_movies_form = dbc.Form(id='choose-movies-form-id',
                         children=[
-                            store_movie_data,
+                            store_movie_list,
+                            store_omdb_data,
                             dbc.Label(id = 'choose-movie-label-id', children=[
                                 enter_movie_instruction_label
                             ]),
@@ -97,6 +103,6 @@ confirm_movies_form = dbc.Form(id='choose-movies-form-id',
                                     ])
                                 ])
                             ]),
-                            dcc.Loading(id='loading-pulling-down-movie-info-id'),
+                            loading_api_pull,
                             pull_movie_info_modal,
                         ])
