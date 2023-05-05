@@ -87,3 +87,39 @@ background-size:16px 16px;}
 			text-align:center;
 			background-color:#d3d5e0;}
 
+#instructions-for-cluster-tab-id {align:left;
+				font-weight:bold;
+				height:10vh;
+				border-style:solid;
+				padding:4px;
+				background-color:#f26202;
+				text-align:left;
+				font-size:16px;
+				border-width:5px;}
+
+#variable-dropdown-div-id {width:25%;}
+
+#num_cluster_input-div-id {width:25%;}
+
+#run-cluster-div-id {width:25%;}
+
+#configure-div-id {height: 10vh;
+			padding:4px;}
+
+#export-div-id  {width:25%;}
+
+#cluster-options-dropdown-id {width:320px;}
+
+#run-cluster-btn-id {width:320px;
+				height:35px;}
+
+#num-cluster-input-id {width:320px;
+				height:35px;}
+
+#export-cluster-table-btn-id {width:320px;
+				height:35px;}
+
+#result-table-div-id {width:70%;}
+
+#evaluation-div-id {width:30%;}
+

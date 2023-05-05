@@ -68,6 +68,8 @@ class MovieRequests:
             change_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
             if api_btn_clicks == 0:
                 raise dash.exceptions.PreventUpdate()
+            elif movie_list is None:
+                raise dash.exceptions.PreventUpdate()
             elif 'import-movies-api-btn-id' in change_id:
                 try:
                     self.get_movie_data(movie_list)
@@ -80,3 +82,5 @@ class MovieRequests:
                     return self.movie_info_list, True, success_title, num_movies_imported+modal_message_movies_imported+modal_message_wrong_movies+invalid_movies, None
                 else:
                     return self.movie_info_list, True, success_title, num_movies_imported+modal_message_movies_imported, None
+            else:
+                raise dash.exceptions.PreventUpdate()

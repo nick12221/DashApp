@@ -48,7 +48,7 @@ instructions_pulling_movies_form = dbc.Form(id='instructions-for-app-id',
                                                 dcc.Markdown('''
                                                 * Please upload a CSV or excel with one column for the movies you want to pull from the OMDB API. App only allows for pulling 1,000 movies per day. Please click the "import" button to pull the data into the app.
 
-                                                * The second tab will allow you to perform descriptive analytics to do.
+                                                * The second tab performs segmentation using K Means Clustering.
 
                                                 * The third tab is responsible for statistical learning, where the user can build their own linear regression model.
 

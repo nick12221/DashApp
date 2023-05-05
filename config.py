@@ -19,3 +19,8 @@ error_title = 'Error'
 modal_message_movies_imported = ' movies were imported from the OMDB API.'
 
 modal_message_wrong_movies = ' The following movies were not found: '
+
+#-----------------------------Tab Two Variables---------------------------#
+run_cluster_message = 'Run K Means Clustering'
+
+export_cluster_table_message = "Export Results to CSV"

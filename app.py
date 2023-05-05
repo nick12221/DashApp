@@ -8,6 +8,7 @@ import dash_bootstrap_components as dbc
 from CallbackFunctions.file_import_export import *
 from CallbackFunctions.movie_api import *
 from TabOneComponents.tab_one_components import *
+from TabTwoComponents.tab_two_components import *
 
 #initialize class objects
 FileImportExport = FileImportExport()
@@ -27,6 +28,9 @@ app.layout = html.Div(id='dash-app-id', children=[
             ])  
         ]),
         dcc.Tab(label=tab_two_label, id='tab-two-id', children=[
+            instructions_pulling_movies_form,
+            configure_cluster_algorithm,
+            results_section
         ])  
     ])
 ])
