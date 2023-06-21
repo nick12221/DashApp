@@ -5,9 +5,10 @@ from threading import Timer
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
-from CallbackFunctions.movie_api import MovieRequests
-from TabOneComponents.tab_one_components import *
-from TabTwoComponents.tab_two_components import *
+from movie_api import MovieRequests
+from file_import_export import FileImportExport
+from tab_one_components import *
+from tab_two_components import *
 
 
 # Initialize app
@@ -36,22 +37,15 @@ class DashApp:
                                 )
                             ],
                         ),
-                        dcc.Tab(
-                            label=tab_two_label,
-                            id="tab-two-id",
-                            children=[
-                                instructions_pulling_movies_form,
-                                configure_cluster_algorithm,
-                                results_section,
-                            ],
-                        ),
                     ]
                 )
             ],
         )
         self.APIRequests = MovieRequests()
+        self.ExcelImportExport = FileImportExport()
 
-        self.APIRquest.import_movie_data_app(app)
+        self.ExcelImportExport.app_upload_file(self.app)
+        self.APIRequests.import_movie_data_app(self.app)
 
     def run(self):
         webbrowser.open_new("http://127.0.0.1:8050/")
