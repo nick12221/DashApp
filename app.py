@@ -1,7 +1,5 @@
 import dash
-import sys
 import webbrowser
-from threading import Timer
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc

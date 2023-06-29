@@ -77,11 +77,12 @@ class MovieRequests:
                 try:
                     self.get_movie_data(movie_list)
                 except Exception as e:
-                    return None, True, error_title, str(e)
+                    return None, True, error_title, str(e), None
+
+                num_movies_imported = str(len(self.movie_info_list))
 
                 if len(self.invalid_movies_list) > 0:
                     invalid_movies = ", ".join(self.invalid_movies_list)
-                    num_movies_imported = str(len(self.movie_info_list))
                     return (
                         self.movie_info_list,
                         True,
@@ -102,3 +103,5 @@ class MovieRequests:
                     )
             else:
                 raise dash.exceptions.PreventUpdate()
+
+        return nested_import_api_data

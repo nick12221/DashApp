@@ -8,6 +8,8 @@ store_movie_list = dcc.Store(id="store-movie-list-id")
 
 store_omdb_data = dcc.Store(id="store-movie-data-id")
 
+loading_excel_import = dcc.Loading(id="loading-excel-id", type="circle")
+
 loading_api_pull = dcc.Loading(id="loading-pulling-down-movie-info-id", type="circle")
 
 upload_movie_button = dcc.Upload(
@@ -36,6 +38,24 @@ pull_movie_info_modal = html.Div(
 )
 
 
+upload_excel_modal = html.Div(
+    [
+        dbc.Modal(
+            [
+                dbc.ModalHeader(
+                    dbc.ModalTitle(html.Div(id="upload-movie-title-excel-id")),
+                    close_button=True,
+                ),
+                dbc.ModalBody(html.Div(id="upload-movie-title-excel-modal-message-id")),
+            ],
+            id="upload-movie-title-excel-modal-position-id",
+            centered=True,
+            is_open=False,
+        )
+    ]
+)
+
+
 welcome_form = dbc.Form(id="welcome-message-form-id", children=[welcome_message])
 
 
@@ -44,13 +64,13 @@ instructions_pulling_movies_form = dbc.Form(
     children=[
         dcc.Markdown(
             """
-                                                * Please upload a CSV or excel with one column for the movies you want to pull from the OMDB API. App only allows for pulling 1,000 movies per day. Please click the "import" button to pull the data into the app.
+                                                * Upload a CSV or excel with one column labeled "Title" for the movies you want to pull from the OMDB API.
 
-                                                * The second tab performs segmentation using K Means Clustering.
+                                                * Click the "import" button to pull movie data for the list of movies uploaded. App only allows for pulling 1,000 movies per day.
 
-                                                * The third tab is responsible for statistical learning, where the user can build their own linear regression model.
+                                                * Use the second tab for using an ML model to predict the revenue for each movie imported from OMDB or by entering your own movie info.
 
-                                                * The fourth tab you can upload your own description for a movie and it will make a prediction for what genre(s) it could belong to.
+                                                * Export the results and see the metrics of the pretrained model.
                                             """
         )
     ],
@@ -61,13 +81,14 @@ capabilities_form = dbc.Form(
     children=[
         dcc.Markdown(
             """
-                                                * Pull any movie info through the app. 
+
+                                                * User friendly interface for pulling movie data from OMDB API.
                                         
-                                                * Rich functionality for clustering and visualizing data.
+                                                * Full suite of metrics displayed for the pretrained ML Model.
                                          
-                                                * Suite of statistical testing and modelling movie characteristics.
+                                                * All data preprocessing handled in the app when making predictions.
                                                 
-                                                * Predict movie genre for custom/new movie descriptions.
+                                                * Easy to run and download results for any movie.
                                             """
         )
     ],
@@ -104,6 +125,8 @@ confirm_movies_form = dbc.Form(
             ]
         ),
         loading_api_pull,
+        loading_excel_import,
         pull_movie_info_modal,
+        upload_excel_modal,
     ],
 )

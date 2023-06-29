@@ -58,6 +58,10 @@ class FileImportExport:
     def app_upload_file(self, app):
         @app.callback(
             Output("store-movie-list-id", "data"),
+            Output("upload-movie-title-excel-modal-position-id", "is_open"),
+            Output("upload-movie-title-excel-id", "children"),
+            Output("upload-movie-title-excel-modal-message-id", "children"),
+            Output("loading-excel-id", "children"),
             State("upload-movie-list-btn-id", "filename"),
             Input("upload-movie-list-btn-id", "contents"),
         )
@@ -66,8 +70,11 @@ class FileImportExport:
             if contents is None:
                 raise dash.exceptions.PreventUpdate()
             elif "upload-movie-list-btn-id" in change_id:
-                self.parse_file_contents(contents, names)
-                return self.uploaded_movie_list
+                try:
+                    self.parse_file_contents(contents, names)
+                except:
+                    return None, True, error_title, file_import_error_message, None
+                return self.uploaded_movie_list, True, success_title, "Success", None
             else:
                 raise dash.exceptions.PreventUpdate()
 

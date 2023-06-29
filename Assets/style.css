@@ -1,15 +1,15 @@
-#title-page-id {background-image: url("/assets/cover_picture.jpg");
+#title-page-id {background-image: url("/assets/cover_pic.jpg");
 		height: 100vh;}
 
 #welcome-message-form-id {align:center;
 				font-weight:bold;
-				height:100px;
+				height:10vh;
 				border-style:solid;
 				padding:4px;
 				background-color:#f26202;
 				border-color:#11c1f2;
 				text-align:center;
-				font-size:54px;
+				font-size:48px;
 				border-width:5px;}
 
 #instructions-form-id {width:50%;
@@ -47,7 +47,7 @@ background-size:16px 16px;}
 			background-color:#E5EFF0;
 			border-style:double;
 			border-width:medium;
-			height: 200px;
+			height: 21vh;
 			padding: 8px;
 			border-width:15px;}
 
@@ -63,10 +63,10 @@ background-size:16px 16px;}
 
 
 #instructions-for-app-id {font-weight:bold;
-				font-size:20px;}
+				font-size:18px;}
 
 #capabilities-for-app-id{font-weight:bold;
-			font-size:20px}
+			font-size:18px}
 
 #upload-movie-list-btn-id {height:50px;
 				width:300px;
@@ -97,29 +97,4 @@ background-size:16px 16px;}
 				font-size:16px;
 				border-width:5px;}
 
-#variable-dropdown-div-id {width:25%;}
-
-#num_cluster_input-div-id {width:25%;}
-
-#run-cluster-div-id {width:25%;}
-
-#configure-div-id {height: 10vh;
-			padding:4px;}
-
-#export-div-id  {width:25%;}
-
-#cluster-options-dropdown-id {width:320px;}
-
-#run-cluster-btn-id {width:320px;
-				height:35px;}
-
-#num-cluster-input-id {width:320px;
-				height:35px;}
-
-#export-cluster-table-btn-id {width:320px;
-				height:35px;}
-
-#result-table-div-id {width:70%;}
-
-#evaluation-div-id {width:30%;}
-
+###----------------------------------------Tab Two Styling-----------------------------##
