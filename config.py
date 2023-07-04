@@ -1,24 +1,25 @@
 # ------------------------------Tab One Variables------------------------#
+tab_one_label = "Import Movie Data"
+
 upload_file_message = "Upload CSV or Excel"
 
-file_import_error_message = "Can only upload a CSV or excel file"
+file_import_error_message = "Can only upload a CSV or Excel file."
 
 import_movie_api_message = "Import from OMDB API"
 
-enter_movie_instruction_label = "Import Movie Data Form"
+button_controls_label = "Import Controls"
 
-tab_one_label = "Import Movie Data"
-tab_two_label = "Clustering Analytics"
-
-welcome_message = "Welcome to Cinemalytics, A Movie Analytics Web Application"
+welcome_message = "CineSights: A Movie Analytics Platform"
 
 success_title = "Success"
 
 error_title = "Error"
 
+excel_movie_titles_uploaded_message = " movie titles were uploaded by the user."
+
 modal_message_movies_imported = " movies were imported from the OMDB API."
 
-modal_message_wrong_movies = " The following movies were not found: "
+modal_message_wrong_movies = "The following movies were not found: "
 
 # -----------------------------Tab Two Variables---------------------------#
 

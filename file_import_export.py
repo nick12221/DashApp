@@ -74,7 +74,18 @@ class FileImportExport:
                     self.parse_file_contents(contents, names)
                 except:
                     return None, True, error_title, file_import_error_message, None
-                return self.uploaded_movie_list, True, success_title, "Success", None
+
+                import_success_message = (
+                    str(len(self.uploaded_movie_list))
+                    + excel_movie_titles_uploaded_message
+                )
+                return (
+                    self.uploaded_movie_list,
+                    True,
+                    success_title,
+                    import_success_message,
+                    None,
+                )
             else:
                 raise dash.exceptions.PreventUpdate()
 

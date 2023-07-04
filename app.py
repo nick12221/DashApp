@@ -17,7 +17,8 @@ class DashApp:
             id="dash-app-id",
             children=[
                 dcc.Tabs(
-                    [
+                    id="tabs-id",
+                    children=[
                         dcc.Tab(
                             label=tab_one_label,
                             id="tab-one-id",
@@ -26,16 +27,12 @@ class DashApp:
                                     id="title-page-id",
                                     children=[
                                         welcome_form,
-                                        instruction_capabilities_forms,
-                                        html.Div(
-                                            id="import-movie-data-row-id",
-                                            children=[confirm_movies_form],
-                                        ),
+                                        movie_instructions_and_functionality,
                                     ],
                                 )
                             ],
                         ),
-                    ]
+                    ],
                 )
             ],
         )

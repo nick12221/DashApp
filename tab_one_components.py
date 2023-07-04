@@ -4,6 +4,7 @@ from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
+# storage and loading components used on the first tab
 store_movie_list = dcc.Store(id="store-movie-list-id")
 
 store_omdb_data = dcc.Store(id="store-movie-data-id")
@@ -12,6 +13,7 @@ loading_excel_import = dcc.Loading(id="loading-excel-id", type="circle")
 
 loading_api_pull = dcc.Loading(id="loading-pulling-down-movie-info-id", type="circle")
 
+# The excel upload and import from OMDB api
 upload_movie_button = dcc.Upload(
     id="upload-movie-list-btn-id", children=html.Div([html.A(upload_file_message)])
 )
@@ -20,6 +22,7 @@ import_movie_api_data_btn = html.Button(
     import_movie_api_message, id="import-movies-api-btn-id", n_clicks=0
 )
 
+# Modal for messages that pops out after clicking the import api button
 pull_movie_info_modal = html.Div(
     [
         dbc.Modal(
@@ -37,7 +40,7 @@ pull_movie_info_modal = html.Div(
     ]
 )
 
-
+# Modal for messages that pops out after clicking the excel upload button
 upload_excel_modal = html.Div(
     [
         dbc.Modal(
@@ -64,65 +67,52 @@ instructions_pulling_movies_form = dbc.Form(
     children=[
         dcc.Markdown(
             """
-                                                * Upload a CSV or excel with one column labeled "Title" for the movies you want to pull from the OMDB API.
+    ##### **Instructions**
 
-                                                * Click the "import" button to pull movie data for the list of movies uploaded. App only allows for pulling 1,000 movies per day.
-
-                                                * Use the second tab for using an ML model to predict the revenue for each movie imported from OMDB or by entering your own movie info.
-
-                                                * Export the results and see the metrics of the pretrained model.
-                                            """
+    - This is a ML Application designed to predict revenue for movies imported from the OMDB database.
+    
+    - Upload a CSV or Excel file with one column of the movie titles to pull through the OMDB API.
+    
+    - Click the "Import" button to retrieve movie data for the uploaded list (Can only import 1,000/day).
+    
+    - Use the second tab for making revenue predictions on the movies imported on the first tab.
+    
+    - Analyze the model performance and use the export buttons to download results.
+    
+    ##### **Key Features**
+    
+    - User-friendly interface for pulling movie data from the OMDB API.
+    
+    - Comprehensive suite of metrics displayed for the pretrained ML Model.
+    
+    - All data preprocessing is handled within the app when making predictions.
+    
+    - Easy to run and download results for any movie.
+    """
         )
     ],
 )
 
-capabilities_form = dbc.Form(
-    id="capabilities-for-app-id",
-    children=[
-        dcc.Markdown(
-            """
-
-                                                * User friendly interface for pulling movie data from OMDB API.
-                                        
-                                                * Full suite of metrics displayed for the pretrained ML Model.
-                                         
-                                                * All data preprocessing handled in the app when making predictions.
-                                                
-                                                * Easy to run and download results for any movie.
-                                            """
-        )
-    ],
-)
-
-instruction_capabilities_forms = dbc.Row(
-    [
-        html.Div(
-            id="instructions-form-id",
-            children=[dbc.Col([instructions_pulling_movies_form])],
-        ),
-        html.Div(id="capabilities-form-id", children=[dbc.Col([capabilities_form])]),
-    ]
-)
-
-confirm_movies_form = dbc.Form(
+movie_instructions_and_functionality = dbc.Form(
     id="choose-movies-form-id",
     children=[
         store_movie_list,
         store_omdb_data,
-        dbc.Label(id="choose-movie-label-id", children=[enter_movie_instruction_label]),
-        html.Br(),
-        html.Br(),
         dbc.Row(
             [
                 html.Div(
-                    id="upload-csv-container-id",
-                    children=[dbc.Col([upload_movie_button])],
+                    id="instructions-form-id",
+                    children=[dbc.Col([instructions_pulling_movies_form])],
                 ),
                 html.Div(
-                    id="import-movie-data-container-id",
-                    children=[dbc.Col([import_movie_api_data_btn])],
+                    id="tab-one-buttons-id",
+                    children=[
+                        html.Label(button_controls_label),
+                        upload_movie_button,
+                        import_movie_api_data_btn,
+                    ],
                 ),
-            ]
+            ],
         ),
         loading_api_pull,
         loading_excel_import,
