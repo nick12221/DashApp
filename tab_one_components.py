@@ -67,25 +67,27 @@ instructions_pulling_movies_form = dbc.Form(
     children=[
         dcc.Markdown(
             """
-    ##### **Instructions**
+    ##### **Instructions and Overview**
 
-    - This is a ML Application designed to predict revenue for movies imported from the OMDB database.
+    - This is a ML Application designed to pull movie data from the OMDB API and predict revenue.
     
-    - Upload a CSV or Excel file with one column of the movie titles to pull through the OMDB API.
+    - Upload a CSV or Excel file with one column labeled "Title" and the list of movies to import.
     
-    - Click the "Import" button to retrieve movie data for the uploaded list (Can only import 1,000/day).
+    - Click the "Import" button to retrieve movie data from OMDB (Can only import 1,000/day).
     
     - Use the second tab for making revenue predictions on the movies imported on the first tab.
     
-    - Analyze the model performance and use the export buttons to download results.
+    - Utilize the visuals to understand model composition and performance.
     
     ##### **Key Features**
     
-    - User-friendly interface for pulling movie data from the OMDB API.
+    - Flexible file upload to provide target list of movies.
+    
+    - User-friendly interface for accessing data from OMDB API.
     
     - Comprehensive suite of metrics displayed for the pretrained ML Model.
     
-    - All data preprocessing is handled within the app when making predictions.
+    - Seamless experience to run model with data preprocessing handled by the app.
     
     - Easy to run and download results for any movie.
     """
@@ -102,12 +104,14 @@ movie_instructions_and_functionality = dbc.Form(
             [
                 html.Div(
                     id="instructions-form-id",
-                    children=[dbc.Col([instructions_pulling_movies_form])],
+                    children=[instructions_pulling_movies_form],
                 ),
                 html.Div(
                     id="tab-one-buttons-id",
                     children=[
-                        html.Label(button_controls_label),
+                        html.Label(
+                            id="buttons-label-id", children=[button_controls_label]
+                        ),
                         upload_movie_button,
                         import_movie_api_data_btn,
                     ],

@@ -5,6 +5,8 @@ upload_file_message = "Upload CSV or Excel"
 
 file_import_error_message = "Can only upload a CSV or Excel file."
 
+no_title_column_message = 'First column must be called "Title".'
+
 import_movie_api_message = "Import from OMDB API"
 
 button_controls_label = "Import Controls"
