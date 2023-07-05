@@ -45,11 +45,9 @@ class FileImportExport:
 
         try:
             if "csv" in filename:
-                movie_df = pd.read_csv(io.BytesIO(decoded))
-                self.uploaded_movie_list = movie_df.iloc[:, 0]
+                return pd.read_csv(io.BytesIO(decoded))  
             elif "xls" in filename:
-                movie_df = pd.read_excel(io.BytesIO(decoded))
-                self.uploaded_movie_list = movie_df.iloc[:, 0]
+                return pd.read_excel(io.BytesIO(decoded))   
             else:
                 raise Exception(file_import_error_message)
         except Exception as e:
@@ -71,9 +69,14 @@ class FileImportExport:
                 raise dash.exceptions.PreventUpdate()
             elif "upload-movie-list-btn-id" in change_id:
                 try:
-                    self.parse_file_contents(contents, names)
+                    movie_df = self.parse_file_contents(contents, names)
                 except:
                     return None, True, error_title, file_import_error_message, None
+                
+                if list(movie_df.columns)[0] == 'Title':
+                    self.uploaded_movie_list = movie_df.iloc[:, 0]
+                else:
+                    return None, True, error_title, no_title_column_message, None
 
                 import_success_message = (
                     str(len(self.uploaded_movie_list))
