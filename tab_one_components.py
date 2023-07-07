@@ -2,6 +2,7 @@ from config import *
 import dash
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
+import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 
 # storage and loading components used on the first tab
@@ -73,9 +74,9 @@ instructions_pulling_movies_form = dbc.Form(
     
     - Upload a CSV or Excel file with one column labeled "Title" and the list of movies to import.
     
-    - Click the "Import" button to retrieve movie data from OMDB (Can only import 1,000/day).
+    - Click the "Import" button to retrieve movie data from OMDB and see API query performance (Can only import 1,000/day).
     
-    - Use the second tab for making revenue predictions on the movies imported on the first tab.
+    - Use "Run Model" button for making revenue predictions from the movies imported via the API.
     
     - Utilize the visuals to understand model composition and performance.
     
@@ -95,6 +96,10 @@ instructions_pulling_movies_form = dbc.Form(
     ],
 )
 
+total_time_box = html.Div(id="total-time-box-id", children=["0 seconds"])
+avg_time_box = html.Div(id="avg-time-box-id", children=["0 ms/request"])
+
+
 movie_instructions_and_functionality = dbc.Form(
     id="choose-movies-form-id",
     children=[
@@ -107,13 +112,29 @@ movie_instructions_and_functionality = dbc.Form(
                     children=[instructions_pulling_movies_form],
                 ),
                 html.Div(
-                    id="tab-one-buttons-id",
+                    id="tab-one-buttons-div-id",
                     children=[
                         html.Label(
                             id="buttons-label-id", children=[button_controls_label]
                         ),
                         upload_movie_button,
                         import_movie_api_data_btn,
+                    ],
+                ),
+                html.Div(
+                    id="total-time-div-id",
+                    children=[
+                        html.Label(
+                            id="total-time-label-id", children=[total_time_label]
+                        ),
+                        total_time_box,
+                    ],
+                ),
+                html.Div(
+                    id="avg-time-div-id",
+                    children=[
+                        html.Label(id="avg-time-label-id", children=[avg_time_label]),
+                        avg_time_box,
                     ],
                 ),
             ],

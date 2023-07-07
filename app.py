@@ -44,7 +44,7 @@ class DashApp:
 
     def run(self):
         webbrowser.open_new("http://127.0.0.1:8050/")
-        self.app.run_server(debug=True, use_reloader=False)
+        self.app.run_server(debug=True, use_reloader=True)
 
 
 if __name__ == "__main__":

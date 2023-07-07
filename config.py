@@ -1,4 +1,4 @@
-# ------------------------------Tab One Variables------------------------#
+# ------------------------------Variables for API and Excel Upload------------------------#
 tab_one_label = "Import Movie Data"
 
 upload_file_message = "Upload CSV or Excel"
@@ -22,6 +22,10 @@ excel_movie_titles_uploaded_message = " movie titles were uploaded by the user."
 modal_message_movies_imported = " movies were imported from the OMDB API."
 
 modal_message_wrong_movies = "The following movies were not found: "
+
+total_time_label = "Total Time for API Pull"
+
+avg_time_label = "Avg. Time Per API Request"
 
 # -----------------------------Tab Two Variables---------------------------#
 
