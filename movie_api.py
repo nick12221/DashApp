@@ -85,7 +85,7 @@ class MovieRequests:
                     end_time = time.time()
                     total_time = str(round(end_time - start_time, 2)) + " seconds"
                     avg_time = (
-                        str(round(end_time - start_time, 2) / len(movie_list))
+                        str(round((end_time - start_time) / len(movie_list), 2))
                         + " s/request"
                     )
 
