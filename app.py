@@ -5,8 +5,7 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from movie_api import MovieRequests
 from file_import_export import FileImportExport
-from tab_one_components import *
-from tab_two_components import *
+from components import *
 
 
 # Initialize app

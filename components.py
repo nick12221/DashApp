@@ -10,9 +10,9 @@ store_movie_list = dcc.Store(id="store-movie-list-id")
 
 store_omdb_data = dcc.Store(id="store-movie-data-id")
 
-loading_excel_import = dcc.Loading(id="loading-excel-id", type="circle")
+loading_excel_import = dcc.Loading(id="loading-excel-id", type="default")
 
-loading_api_pull = dcc.Loading(id="loading-pulling-down-movie-info-id", type="circle")
+loading_api_import = dcc.Loading(id="loading-api-id", type="default")
 
 # The excel upload and import from OMDB api
 upload_movie_button = dcc.Upload(
@@ -76,7 +76,7 @@ instructions_pulling_movies_form = dbc.Form(
     
     - Click the "Import" button to retrieve movie data from OMDB and see API query performance (Can only import 1,000/day).
     
-    - Use "Run Model" button for making revenue predictions from the movies imported via the API.
+    - Use "Run Model" button to make revenue predictions for the movies imported via the API.
     
     - Utilize the visuals to understand model composition and performance.
     
@@ -96,8 +96,8 @@ instructions_pulling_movies_form = dbc.Form(
     ],
 )
 
-total_time_box = html.Div(id="total-time-box-id", children=["0 seconds"])
-avg_time_box = html.Div(id="avg-time-box-id", children=["0 ms/request"])
+total_time_box = html.Div(id="total-time-box-id", children=[default_total_time])
+avg_time_box = html.Div(id="avg-time-box-id", children=[default_avg_time])
 
 
 movie_instructions_and_functionality = dbc.Form(
@@ -119,6 +119,8 @@ movie_instructions_and_functionality = dbc.Form(
                         ),
                         upload_movie_button,
                         import_movie_api_data_btn,
+                        loading_excel_import,
+                        loading_api_import,
                     ],
                 ),
                 html.Div(
@@ -139,8 +141,6 @@ movie_instructions_and_functionality = dbc.Form(
                 ),
             ],
         ),
-        loading_api_pull,
-        loading_excel_import,
         pull_movie_info_modal,
         upload_excel_modal,
     ],

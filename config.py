@@ -21,11 +21,15 @@ excel_movie_titles_uploaded_message = " movie titles were uploaded by the user."
 
 modal_message_movies_imported = " movies were imported from the OMDB API."
 
-modal_message_wrong_movies = "The following movies were not found: "
+modal_message_wrong_movies = " The following movies were not found: "
 
 total_time_label = "Total Time for API Pull"
 
 avg_time_label = "Avg. Time Per API Request"
+
+default_total_time = "0 seconds"
+
+default_avg_time = "0 s/request"
 
 # -----------------------------Tab Two Variables---------------------------#
 

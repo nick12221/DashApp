@@ -3,6 +3,7 @@ import json
 from config import *
 import dash
 from dash.dependencies import Input, Output, State
+import time
 
 
 class MovieRequests:
@@ -34,28 +35,27 @@ class MovieRequests:
         self.movie_info_list = []
         self.invalid_movies_list = []
 
-    def get_movie_data(self, movie_title_list):
+    def get_movie_data(self, movie_title: str):
         """This function connects to the OMDB API and returns a list of dictionaries.
 
         Parameters:
 
-        movie_title_list: list, str
+        movie_title: str
             A list of movie titles whose data you want to get. Movie titles should be strings.
 
         Returns: Does not return a value, saves down two lists as attributes
             List of dictionaries with each movie's information. List of invalid movies.
         """
 
-        for i in movie_title_list:
-            movie_response = requests.get(
-                f"http://www.omdbapi.com/?t={i}&apikey={self.api_key}"
-            )
-            movie_json = movie_response.text
-            movie_dict = json.loads(movie_json)
-            if movie_dict["Response"] == "False":
-                self.invalid_movies_list.append(i)
-            else:
-                self.movie_info_list.append(movie_dict)
+        movie_response = requests.get(
+            f"http://www.omdbapi.com/?t={movie_title}&apikey={self.api_key}"
+        )
+        movie_json = movie_response.text
+        movie_dict = json.loads(movie_json)
+        if movie_dict["Response"] == "False":
+            self.invalid_movies_list.append(movie_title)
+        else:
+            self.movie_info_list.append(movie_dict)
 
     def import_movie_data_app(self, app):
         @app.callback(
@@ -63,7 +63,9 @@ class MovieRequests:
             Output("pull-movie-modal-position-id", "is_open"),
             Output("pull-movie-modal-title-id", "children"),
             Output("pull-movie-modal-message-id", "children"),
-            Output("loading-pulling-down-movie-info-id", "children"),
+            Output("total-time-box-id", "children"),
+            Output("avg-time-box-id", "children"),
+            Output("loading-api-id", "children"),
             State("store-movie-list-id", "data"),
             Input("import-movies-api-btn-id", "n_clicks"),
         )
@@ -75,9 +77,28 @@ class MovieRequests:
                 raise dash.exceptions.PreventUpdate()
             elif "import-movies-api-btn-id" in change_id:
                 try:
-                    self.get_movie_data(movie_list)
+                    start_time = time.time()
+
+                    for i in movie_list:
+                        self.get_movie_data(i)
+
+                    end_time = time.time()
+                    total_time = str(round(end_time - start_time, 2)) + " seconds"
+                    avg_time = (
+                        str(round(end_time - start_time, 2) / len(movie_list))
+                        + " s/request"
+                    )
+
                 except Exception as e:
-                    return None, True, error_title, str(e), None
+                    return (
+                        None,
+                        True,
+                        error_title,
+                        str(e),
+                        default_total_time,
+                        default_avg_time,
+                        None,
+                    )
 
                 num_movies_imported = str(len(self.movie_info_list))
 
@@ -91,6 +112,8 @@ class MovieRequests:
                         + modal_message_movies_imported
                         + modal_message_wrong_movies
                         + invalid_movies,
+                        total_time,
+                        avg_time,
                         None,
                     )
                 else:
@@ -99,6 +122,8 @@ class MovieRequests:
                         True,
                         success_title,
                         num_movies_imported + modal_message_movies_imported,
+                        total_time,
+                        avg_time,
                         None,
                     )
             else:
