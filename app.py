@@ -1,6 +1,6 @@
 import dash
 import webbrowser
-from dash import Dash, html, dcc, no_update, dash_table as dt
+from dash import html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from movie_api import MovieRequests
@@ -15,26 +15,22 @@ class DashApp:
         self.app.layout = html.Div(
             id="dash-app-id",
             children=[
-                dcc.Tabs(
-                    id="tabs-id",
+                dcc.Tab(
+                    label=tab_one_label,
+                    id="tab-one-id",
                     children=[
-                        dcc.Tab(
-                            label=tab_one_label,
-                            id="tab-one-id",
+                        html.Div(
+                            id="title-page-id",
                             children=[
-                                html.Div(
-                                    id="title-page-id",
-                                    children=[
-                                        welcome_form,
-                                        movie_instructions_and_functionality,
-                                    ],
-                                )
+                                welcome_form,
+                                movie_instructions_and_functionality,
                             ],
-                        ),
+                        )
                     ],
-                )
+                ),
             ],
         )
+
         self.APIRequests = MovieRequests()
         self.ExcelImportExport = FileImportExport()
 
