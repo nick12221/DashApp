@@ -8,7 +8,6 @@ from file_import_export import FileImportExport
 from components import *
 
 
-# Initialize app
 class DashApp:
     def __init__(self):
         self.app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
