@@ -1,5 +1,4 @@
 from config import *
-import dash
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go

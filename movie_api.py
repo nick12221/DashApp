@@ -35,7 +35,7 @@ class MovieRequests:
         self.movie_info_list = []
         self.invalid_movies_list = []
 
-    def get_movie_data(self, movie_title: str):
+    def get_movie_data(self, movie_title: str) -> None:
         """This function connects to the OMDB API and returns a list of dictionaries.
 
         Parameters:
@@ -43,8 +43,8 @@ class MovieRequests:
         movie_title: str
             A list of movie titles whose data you want to get. Movie titles should be strings.
 
-        Returns: Does not return a value, saves down two lists as attributes
-            List of dictionaries with each movie's information. List of invalid movies.
+        Returns: None saves down two lists as attributes list of dictionaries with each movie's information and
+                list of invalid movies.
         """
 
         movie_response = requests.get(

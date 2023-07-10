@@ -16,38 +16,35 @@ class FileImportExport:
 
     Methods
     -------
-    parse_csv_contents:
-        Saves down list of movie titles from the uploaded csv..
+    parse_file_contents:
+        Saves down list of movie titles from the uploaded csv.
     """
 
     def __init__(self):
-        """
-        Constructs all the necessary attributes for the CSVImportExport object.
-        """
         self.uploaded_movie_list = None
 
-    def parse_file_contents(self, file_contents, filename):
-        """This function reads in a csv file into the dash app.
+    def parse_file_contents(self, file_contents: str, filename: str) -> pd.DataFrame:
+        """Method to read in csv or excel file.
 
         Parameters:
 
-        contents:
+        file_contents: str:
             Contents of the csv file that was uploaded.
 
         filename: str
             Name of the csv file that was uploaded.
 
         Returns:
-            Does not return anything. Saves down movies as list attribute to the CSVImportExport object.
+            Pandas dataframe.
         """
         content_type, content_string = file_contents.split(",")
         decoded = base64.b64decode(content_string)
 
         try:
             if "csv" in filename:
-                return pd.read_csv(io.BytesIO(decoded))  
+                return pd.read_csv(io.BytesIO(decoded))
             elif "xls" in filename:
-                return pd.read_excel(io.BytesIO(decoded))   
+                return pd.read_excel(io.BytesIO(decoded))
             else:
                 raise Exception(file_import_error_message)
         except Exception as e:
@@ -72,8 +69,8 @@ class FileImportExport:
                     movie_df = self.parse_file_contents(contents, names)
                 except:
                     return None, True, error_title, file_import_error_message, None
-                
-                if list(movie_df.columns)[0] == 'Title':
+
+                if list(movie_df.columns)[0] == "Title":
                     self.uploaded_movie_list = movie_df.iloc[:, 0]
                 else:
                     return None, True, error_title, no_title_column_message, None

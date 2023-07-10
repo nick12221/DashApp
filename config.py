@@ -11,7 +11,7 @@ import_movie_api_message = "Import from OMDB API"
 
 button_controls_label = "Import Controls"
 
-welcome_message = "CineSights: A Movie Analytics Platform"
+welcome_message = "CinSights: A Movie Analytics Platform"
 
 success_title = "Success"
 
@@ -31,7 +31,7 @@ default_total_time = "0 seconds"
 
 default_avg_time = "0 s/request"
 
-# -----------------------------Tab Two Variables---------------------------#
+# -----------------------------Model Section Variables---------------------------#
 
 cpi_dict = {
     1913: 9.9,
