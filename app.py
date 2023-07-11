@@ -6,20 +6,21 @@ import dash_bootstrap_components as dbc
 from movie_api import MovieRequests
 from file_import_export import FileImportExport
 from components import *
+from component_ids import *
 
 
 class DashApp:
     def __init__(self):
         self.app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
         self.app.layout = html.Div(
-            id="dash-app-id",
+            id=dash_app_id,
             children=[
                 dcc.Tab(
                     label=tab_one_label,
-                    id="tab-one-id",
+                    id=tab_one_id,
                     children=[
                         html.Div(
-                            id="title-page-id",
+                            id=title_page_id,
                             children=[
                                 welcome_form,
                                 movie_instructions_and_functionality,

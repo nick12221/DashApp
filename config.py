@@ -7,6 +7,8 @@ file_import_error_message = "Can only upload a CSV or Excel file."
 
 no_title_column_message = 'First column must be called "Title".'
 
+file_title_column_name = "Title"
+
 import_movie_api_message = "Import from OMDB API"
 
 button_controls_label = "Import Controls"
@@ -32,6 +34,8 @@ default_total_time = "0 seconds"
 default_avg_time = "0 s/request"
 
 # -----------------------------Model Section Variables---------------------------#
+
+model_section_title = "Model Summary and Prediction"
 
 cpi_dict = {
     1913: 9.9,

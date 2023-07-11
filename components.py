@@ -1,25 +1,26 @@
 from config import *
+from component_ids import *
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 
 # storage and loading components used on the first tab
-store_movie_list = dcc.Store(id="store-movie-list-id")
+store_movie_list = dcc.Store(id=imported_file_movie_list_id)
 
-store_omdb_data = dcc.Store(id="store-movie-data-id")
+store_omdb_data = dcc.Store(id=imported_movie_data_id)
 
-loading_excel_import = dcc.Loading(id="loading-excel-id", type="default")
+loading_excel_import = dcc.Loading(id=file_upload_loading_id)
 
-loading_api_import = dcc.Loading(id="loading-api-id", type="default")
+loading_api_import = dcc.Loading(id=api_import_loading_id)
 
 # The excel upload and import from OMDB api
 upload_movie_button = dcc.Upload(
-    id="upload-movie-list-btn-id", children=html.Div([html.A(upload_file_message)])
+    id=upload_file_btn_id, children=html.Div([html.A(upload_file_message)])
 )
 
 import_movie_api_data_btn = html.Button(
-    import_movie_api_message, id="import-movies-api-btn-id", n_clicks=0
+    import_movie_api_message, id=api_import_btn_id, n_clicks=0
 )
 
 # Modal for messages that pops out after clicking the import api button
@@ -28,12 +29,12 @@ pull_movie_info_modal = html.Div(
         dbc.Modal(
             [
                 dbc.ModalHeader(
-                    dbc.ModalTitle(html.Div(id="pull-movie-modal-title-id")),
+                    dbc.ModalTitle(html.Div(id=api_import_modal_title_id)),
                     close_button=True,
                 ),
-                dbc.ModalBody(html.Div(id="pull-movie-modal-message-id")),
+                dbc.ModalBody(html.Div(id=api_import_modal_message_id)),
             ],
-            id="pull-movie-modal-position-id",
+            id=api_import_modal_position_id,
             centered=True,
             is_open=False,
         )
@@ -46,12 +47,12 @@ upload_excel_modal = html.Div(
         dbc.Modal(
             [
                 dbc.ModalHeader(
-                    dbc.ModalTitle(html.Div(id="upload-movie-title-excel-id")),
+                    dbc.ModalTitle(html.Div(id=file_upload_modal_title_id)),
                     close_button=True,
                 ),
-                dbc.ModalBody(html.Div(id="upload-movie-title-excel-modal-message-id")),
+                dbc.ModalBody(html.Div(id=file_upload_modal_message_id)),
             ],
-            id="upload-movie-title-excel-modal-position-id",
+            id=file_upload_modal_position_id,
             centered=True,
             is_open=False,
         )
@@ -59,11 +60,11 @@ upload_excel_modal = html.Div(
 )
 
 
-welcome_form = dbc.Form(id="welcome-message-form-id", children=[welcome_message])
+welcome_form = dbc.Form(id=app_title_form_id, children=[welcome_message])
 
 
 instructions_pulling_movies_form = dbc.Form(
-    id="instructions-for-app-id",
+    id=instructions_text_id,
     children=[
         dcc.Markdown(
             """
@@ -95,26 +96,26 @@ instructions_pulling_movies_form = dbc.Form(
     ],
 )
 
-total_time_box = html.Div(id="total-time-box-id", children=[default_total_time])
-avg_time_box = html.Div(id="avg-time-box-id", children=[default_avg_time])
+total_time_box = html.Div(id=total_time_box_id, children=[default_total_time])
+avg_time_box = html.Div(id=avg_time_box_id, children=[default_avg_time])
 
 
 movie_instructions_and_functionality = dbc.Form(
-    id="choose-movies-form-id",
+    id=movie_file_and_api_form_id,
     children=[
         store_movie_list,
         store_omdb_data,
         dbc.Row(
             [
                 html.Div(
-                    id="instructions-form-id",
+                    id=instructions_div_id,
                     children=[instructions_pulling_movies_form],
                 ),
                 html.Div(
-                    id="tab-one-buttons-div-id",
+                    id=upload_and_api_div_id,
                     children=[
                         html.Label(
-                            id="buttons-label-id", children=[button_controls_label]
+                            id=button_labels_div_id, children=[button_controls_label]
                         ),
                         upload_movie_button,
                         import_movie_api_data_btn,
@@ -123,18 +124,16 @@ movie_instructions_and_functionality = dbc.Form(
                     ],
                 ),
                 html.Div(
-                    id="total-time-div-id",
+                    id=total_time_div_id,
                     children=[
-                        html.Label(
-                            id="total-time-label-id", children=[total_time_label]
-                        ),
+                        html.Label(id=total_time_label_id, children=[total_time_label]),
                         total_time_box,
                     ],
                 ),
                 html.Div(
-                    id="avg-time-div-id",
+                    id=avg_time_div_id,
                     children=[
-                        html.Label(id="avg-time-label-id", children=[avg_time_label]),
+                        html.Label(id=avg_time_label_id, children=[avg_time_label]),
                         avg_time_box,
                     ],
                 ),

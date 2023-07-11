@@ -1,6 +1,7 @@
 import requests
 import json
 from config import *
+from component_ids import *
 import dash
 from dash.dependencies import Input, Output, State
 import time
@@ -59,15 +60,15 @@ class MovieRequests:
 
     def import_movie_data_app(self, app):
         @app.callback(
-            Output("store-movie-data-id", "data"),
-            Output("pull-movie-modal-position-id", "is_open"),
-            Output("pull-movie-modal-title-id", "children"),
-            Output("pull-movie-modal-message-id", "children"),
-            Output("total-time-box-id", "children"),
-            Output("avg-time-box-id", "children"),
-            Output("loading-api-id", "children"),
-            State("store-movie-list-id", "data"),
-            Input("import-movies-api-btn-id", "n_clicks"),
+            Output(imported_movie_data_id, "data"),
+            Output(api_import_modal_position_id, "is_open"),
+            Output(api_import_modal_title_id, "children"),
+            Output(api_import_modal_message_id, "children"),
+            Output(total_time_box_id, "children"),
+            Output(avg_time_box_id, "children"),
+            Output(api_import_loading_id, "children"),
+            State(imported_file_movie_list_id, "data"),
+            Input(api_import_btn_id, "n_clicks"),
         )
         def nested_import_api_data(movie_list, api_btn_clicks):
             change_id = [p["prop_id"] for p in dash.callback_context.triggered][0]
@@ -75,7 +76,7 @@ class MovieRequests:
                 raise dash.exceptions.PreventUpdate()
             elif movie_list is None:
                 raise dash.exceptions.PreventUpdate()
-            elif "import-movies-api-btn-id" in change_id:
+            elif api_import_btn_id in change_id:
                 try:
                     start_time = time.time()
 
