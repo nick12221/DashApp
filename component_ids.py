@@ -27,3 +27,8 @@ total_time_div_id = "total-time-div-id"
 total_time_label_id = "total-time-label-id"
 avg_time_div_id = "avg-time-div-id"
 avg_time_label_id = "avg-time-label-id"
+
+# MODEL SECTION COMPONENTS
+model_prediction_btn_id = "model-pred-btn-id"
+export_results_btn_id = "export-preds-btn-id"
+results_table_id = "prediction-result-table-id"

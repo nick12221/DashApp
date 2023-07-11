@@ -5,7 +5,9 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 
-# storage and loading components used on the first tab
+# Components for api and excel functionality
+
+# storage and loading components
 store_movie_list = dcc.Store(id=imported_file_movie_list_id)
 
 store_omdb_data = dcc.Store(id=imported_movie_data_id)
@@ -59,8 +61,8 @@ upload_excel_modal = html.Div(
     ]
 )
 
-
-welcome_form = dbc.Form(id=app_title_form_id, children=[welcome_message])
+# App title form
+app_title_form = dbc.Form(id=app_title_form_id, children=[welcome_message])
 
 
 instructions_pulling_movies_form = dbc.Form(
@@ -96,11 +98,30 @@ instructions_pulling_movies_form = dbc.Form(
     ],
 )
 
+# Div components for the boxes showing time for api pull
 total_time_box = html.Div(id=total_time_box_id, children=[default_total_time])
 avg_time_box = html.Div(id=avg_time_box_id, children=[default_avg_time])
 
+# Components for the model part of the app
 
-movie_instructions_and_functionality = dbc.Form(
+# Buttons for running model and results
+model_prediction_btn = html.Button(
+    model_run_btn_text, id=model_prediction_btn_id, n_clicks=0
+)
+
+export_results_btn = html.Button(export_btn_text, id=export_results_btn_id, n_clicks=0)
+
+# Table with results
+result_table = dt.DataTable(
+    id=results_table_id,
+    filter_action="native",
+    page_action="none",
+    filter_options={"case": "insensitive"},
+)
+
+
+# Final structure to pass to app
+components_div = dbc.Form(
     id=movie_file_and_api_form_id,
     children=[
         store_movie_list,

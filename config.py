@@ -37,6 +37,12 @@ default_avg_time = "0 s/request"
 
 model_section_title = "Model Summary and Prediction"
 
+feature_importance_header = "Feature Importance"
+
+model_run_btn_text = "Run Model Predictions"
+
+export_btn_text = "Export Results"
+
 cpi_dict = {
     1913: 9.9,
     1914: 10,

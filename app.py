@@ -22,8 +22,8 @@ class DashApp:
                         html.Div(
                             id=title_page_id,
                             children=[
-                                welcome_form,
-                                movie_instructions_and_functionality,
+                                app_title_form,
+                                components_div,
                             ],
                         )
                     ],
