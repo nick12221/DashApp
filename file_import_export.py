@@ -56,7 +56,7 @@ class FileImportExport:
         except Exception as e:
             raise str(e)
 
-    def export_to_csv(df: pd.DataFrame) -> IO:
+    def export_to_csv(self, df: pd.DataFrame) -> IO:
         """Method to export dataframe to CSV file.
 
         Parameters:
@@ -109,3 +109,22 @@ class FileImportExport:
                 raise dash.exceptions.PreventUpdate()
 
         return nested_upload
+
+    def app_model_result_export(self, app):
+        @app.callback(
+            Output(),
+            State(results_table_id, "data"),
+            Input(export_results_btn_id, "n_clicks"),
+        )
+        def export_results(results_table, export_clicks):
+            change_id = [p["prop_id"] for p in dash.callback_context.triggered][0]
+
+            if export_clicks == 0:
+                raise dash.exceptions.PreventUpdate()
+            elif export_results_btn_id in change_id:
+                results_df = pd.DataFrame(results_table)
+                return self.export_to_csv(results_df)
+            else:
+                raise dash.exceptions.PreventUpdate()
+
+        return export_results
