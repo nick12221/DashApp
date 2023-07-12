@@ -2,6 +2,8 @@ import base64
 import io
 import pandas as pd
 import dash
+from dash import dcc
+from typing import IO
 from dash.dependencies import Input, Output, State
 from config import *
 from component_ids import *
@@ -19,6 +21,9 @@ class FileImportExport:
     -------
     parse_file_contents:
         Returns dataframe of movie titles from the uploaded file.
+
+    export_to_csv:
+        Returns CSV file.
     """
 
     def __init__(self):
@@ -50,6 +55,19 @@ class FileImportExport:
                 raise Exception(file_import_error_message)
         except Exception as e:
             raise str(e)
+
+    def export_to_csv(df: pd.DataFrame) -> IO:
+        """Method to export dataframe to CSV file.
+
+        Parameters:
+
+        df: pd.DataFrame
+            Pandas dataframe to export.
+
+        Returns: CSV file.
+        """
+
+        return dcc.send_data_frame(df.to_csv, r"model_results.csv")
 
     def app_upload_file(self, app):
         @app.callback(
