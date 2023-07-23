@@ -111,6 +111,8 @@ model_prediction_btn = html.Button(
 
 export_results_btn = html.Button(export_btn_text, id=export_results_btn_id, n_clicks=0)
 
+model_coefficients_graph = dcc.Graph(id="model-coefficients-graph-id")
+
 # Table with results
 result_table = dt.DataTable(
     id=results_table_id,
@@ -126,39 +128,93 @@ components_div = dbc.Form(
     children=[
         store_movie_list,
         store_omdb_data,
-        dbc.Row(
-            [
+        html.Div(
+            id="full-div-id",
+            children=[
                 html.Div(
                     id=instructions_div_id,
                     children=[instructions_pulling_movies_form],
                 ),
                 html.Div(
-                    id=upload_and_api_div_id,
+                    id="api-pull-components-div-id",
                     children=[
-                        html.Label(
-                            id=button_labels_div_id, children=[button_controls_label]
+                        html.Div(
+                            id="top-div-id",
+                            children=[
+                                html.Div(
+                                    id=upload_and_api_div_id,
+                                    children=[
+                                        html.Label(
+                                            id=button_labels_div_id,
+                                            children=[button_controls_label],
+                                        ),
+                                        upload_movie_button,
+                                        import_movie_api_data_btn,
+                                        loading_excel_import,
+                                        loading_api_import,
+                                    ],
+                                ),
+                                html.Div(
+                                    id=total_time_div_id,
+                                    children=[
+                                        html.Label(
+                                            id=total_time_label_id,
+                                            children=[total_time_label],
+                                        ),
+                                        total_time_box,
+                                    ],
+                                ),
+                                html.Div(
+                                    id=avg_time_div_id,
+                                    children=[
+                                        html.Label(
+                                            id=avg_time_label_id,
+                                            children=[avg_time_label],
+                                        ),
+                                        avg_time_box,
+                                    ],
+                                ),
+                            ],
+                            style={"display": "flex"},
                         ),
-                        upload_movie_button,
-                        import_movie_api_data_btn,
-                        loading_excel_import,
-                        loading_api_import,
-                    ],
-                ),
-                html.Div(
-                    id=total_time_div_id,
-                    children=[
-                        html.Label(id=total_time_label_id, children=[total_time_label]),
-                        total_time_box,
-                    ],
-                ),
-                html.Div(
-                    id=avg_time_div_id,
-                    children=[
-                        html.Label(id=avg_time_label_id, children=[avg_time_label]),
-                        avg_time_box,
+                        html.Div(
+                            id="model-section-title-div-id",
+                            children=[model_section_title],
+                        ),
+                        html.Div(
+                            id="model-components",
+                            children=[
+                                html.Div(
+                                    id="graph-div-id",
+                                    children=[model_coefficients_graph],
+                                ),
+                                html.Div(
+                                    id="run-id",
+                                    children=[
+                                        html.Div(
+                                            id="buttons",
+                                            children=[
+                                                html.Div(
+                                                    id="run-div-id",
+                                                    children=[model_prediction_btn],
+                                                ),
+                                                html.Div(
+                                                    id="export-div-id",
+                                                    children=[export_results_btn],
+                                                ),
+                                            ],
+                                            style={"display": "flex"},
+                                        ),
+                                        html.Div([result_table]),
+                                    ],
+                                ),
+                            ],
+                            style={"display": "flex"},
+                        ),
                     ],
                 ),
             ],
+            style={"display": "flex"},
         ),
         pull_movie_info_modal,
         upload_excel_modal,

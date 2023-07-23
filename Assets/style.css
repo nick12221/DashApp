@@ -32,7 +32,43 @@
 				padding-top: 1vh;
 				padding-left: 1.5vw;
 				padding-right: 1vw;
+				display:flex;
+				flex-direction: column;
 				}
+
+#model-pred-btn-id {background-color: #02075d;
+    border: none;
+    color: white;
+    padding-left: .4vw;
+    padding-right: .4vw;
+    text-align: center;
+    width: 12vw;
+    text-decoration: none;
+    font-size: 1.9vh;
+    margin: 1.2vh .1vw;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    height: 6vh;}
+
+#export-preds-btn-id {background-color: #02075d;
+    border: none;
+    color: white;
+    padding-left: .4vw;
+    padding-right: .4vw;
+    text-align: center;
+    width: 12vw;
+    text-decoration: none;
+    font-size: 1.9vh;
+    margin: 1.2vh .1vw;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    height: 6vh;}
+
+#model-coefficients-graph-id {width: 40vw; background-color: #fafafa; height:40vh;}
 
 
 #instructions-for-app-id {font-size:1.8vh;
@@ -131,5 +167,5 @@
     height: 6vh;
 }
 
-				
-###----------------------------------------Tab Two Styling-----------------------------##
+#model-section-title-div-id {display:flex; justify-contents:center; font-size: 3.9vh; text-align:center;}
+

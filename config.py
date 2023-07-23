@@ -39,7 +39,7 @@ model_section_title = "Model Summary and Prediction"
 
 feature_importance_header = "Feature Importance"
 
-model_run_btn_text = "Run Model Predictions"
+model_run_btn_text = "Predict"
 
 export_btn_text = "Export Results"
 
