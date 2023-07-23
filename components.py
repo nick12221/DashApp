@@ -86,13 +86,13 @@ instructions_pulling_movies_form = dbc.Form(
     
     - Flexible file upload to provide target list of movies.
     
-    - User-friendly interface for accessing data from OMDB API.
+    - User-friendly interface and controls for accessing data from the OMDB API.
     
-    - Comprehensive suite of metrics displayed for the pretrained ML Model.
+    - Full display of fitted model coefficients and statistical significance.
     
     - Seamless experience to run model with data preprocessing handled by the app.
     
-    - Easy to run and download results for any movie.
+    - Just press "Predict" to predict movie revenue and then download results.
     """
         )
     ],
