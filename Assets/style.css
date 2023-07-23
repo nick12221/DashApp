@@ -179,4 +179,7 @@
 }
 
 
-
+#top-div-id {display: flex;}
+#model-buttons-div-id {display:flex;}
+#model-components-div-id{display:flex;}
+#full-div-id{display:flex;}
