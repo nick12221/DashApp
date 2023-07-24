@@ -194,9 +194,3 @@
 #prediction-result-table-id {width:94%;
 				height: 40vh;}
 
-
-.js-plotly-plot .plotly-icon, /* Plotly icons within a plot */
-.js-plotly-plot .modebar-container .modebar-group .modebar-btn svg, /* Modebar icons */
-.js-plotly-plot .modebar-container .modebar-btn span { /* Modebar button text (if any) */
-    display: none !important;
-}
