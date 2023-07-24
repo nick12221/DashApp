@@ -63,7 +63,8 @@
 				justify-content:center; 
 				font-size: 3.9vh; 
 				padding: .4vw .6vh;
-				margin-bottom: 1vh;}
+				margin-bottom: 1vh;
+				text-decoration: underline;}
 
 
 
@@ -185,3 +186,17 @@
 #model-buttons-div-id {display:flex;}
 #model-components-div-id{display:flex;}
 #full-div-id{display:flex;}
+
+#result-table-div-id {display:flex;
+			justify-content:center;
+			margin-top: 2vh;}
+
+#prediction-result-table-id {width:94%;
+				height: 40vh;}
+
+
+.js-plotly-plot .plotly-icon, /* Plotly icons within a plot */
+.js-plotly-plot .modebar-container .modebar-group .modebar-btn svg, /* Modebar icons */
+.js-plotly-plot .modebar-container .modebar-btn span { /* Modebar button text (if any) */
+    display: none !important;
+}

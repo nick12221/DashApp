@@ -45,6 +45,8 @@ model_run_btn_text = "Predict"
 
 export_btn_text = "Export Results"
 
+revenue_prediction_column = "Revenue Prediction"
+
 cpi_dict = {
     1913: 9.9,
     1914: 10,

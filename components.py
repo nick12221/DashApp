@@ -113,7 +113,9 @@ model_prediction_btn = html.Button(
 
 export_results_btn = html.Button(export_btn_text, id=export_results_btn_id, n_clicks=0)
 
-model_coefficients_graph = dcc.Graph(id=model_coefs_div_id)
+model_coefficients_graph = dcc.Graph(
+    id=model_coefs_div_id, config={"displayModeBar": False}
+)
 
 # Table with results
 result_table = dt.DataTable(
@@ -121,6 +123,19 @@ result_table = dt.DataTable(
     filter_action="native",
     page_action="none",
     filter_options={"case": "insensitive"},
+    style_header={
+        "backgroundColor": "#D4F1F4",
+        "color": "black",
+        "padding": ".5vh .3vw",
+        "textAlign": "center",
+        "fontSize": "2.5vh",
+        "boxShadow": "0px 8px 20px rgba(0, 0, 0, 0.2)",
+        "border": "1px solid #ddd",
+    },
+    columns=[
+        {"name": file_title_column_name, "id": file_title_column_name},
+        {"name": revenue_prediction_column, "id": revenue_prediction_column},
+    ],
 )
 
 
