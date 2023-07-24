@@ -16,6 +16,8 @@ loading_excel_import = dcc.Loading(id=file_upload_loading_id)
 
 loading_api_import = dcc.Loading(id=api_import_loading_id)
 
+download_component = dcc.Download(id=results_download_id)
+
 # The excel upload and import from OMDB api
 upload_movie_button = dcc.Upload(
     id=upload_file_btn_id, children=html.Div([html.A(upload_file_message)])
@@ -88,11 +90,11 @@ instructions_pulling_movies_form = dbc.Form(
     
     - User-friendly interface and controls for accessing data from the OMDB API.
     
-    - Full display of fitted model coefficients and statistical significance.
+    - Full display of fitted model coefficients and statistical significance using my own statistical package.
     
     - Seamless experience to run model with data preprocessing handled by the app.
     
-    - Just press "Predict" to predict movie revenue and then download results.
+    - Just press "Predict" to predict movie revenue and then download results!
     """
         )
     ],
@@ -136,7 +138,7 @@ components_div = dbc.Form(
                     children=[instructions_pulling_movies_form],
                 ),
                 html.Div(
-                    id=all_components_but_indstructions_div_id,
+                    id=all_components_but_instructions_div_id,
                     children=[
                         html.Div(
                             id=api_pull_component_id,
@@ -199,7 +201,10 @@ components_div = dbc.Form(
                                                 ),
                                                 html.Div(
                                                     id=export_div_id,
-                                                    children=[export_results_btn],
+                                                    children=[
+                                                        export_results_btn,
+                                                        download_component,
+                                                    ],
                                                 ),
                                             ],
                                         ),

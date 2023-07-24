@@ -2,7 +2,7 @@ dash_app_id = "dash-app-id"
 tab_one_id = "tab-one-id"
 title_page_id = "title-page-id"
 all_components_div_id = "full-div-id"
-all_components_but_indstructions_div_id = "api-pull-components-div-id"
+all_components_but_instructions_div_id = "api-pull-components-div-id"
 api_pull_component_id = "top-div-id"
 
 # API AND EXCEL Import Section Components
@@ -44,3 +44,4 @@ predict_div_id = "predict-div-id"
 export_div_id = "export-div-id"
 model_coefs_div_id = "model-coefficients-graph-id"
 result_table_div_id = "result-table-div-id"
+results_download_id = "results-download-id"

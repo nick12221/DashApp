@@ -33,6 +33,8 @@ default_total_time = "0 seconds"
 
 default_avg_time = "0 s/request"
 
+movie_id_column = "imdbID"
+
 # -----------------------------Model Section Variables---------------------------#
 
 model_section_title = "Model Summary and Prediction"

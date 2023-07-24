@@ -112,18 +112,25 @@ class FileImportExport:
 
     def app_model_result_export(self, app):
         @app.callback(
-            Output(),
+            Output(results_download_id, "data"),
+            State(imported_movie_data_id, "data"),
             State(results_table_id, "data"),
             Input(export_results_btn_id, "n_clicks"),
         )
-        def export_results(results_table, export_clicks):
+        def export_results(movie_info_data, results_table, export_clicks):
             change_id = [p["prop_id"] for p in dash.callback_context.triggered][0]
 
             if export_clicks == 0:
                 raise dash.exceptions.PreventUpdate()
+            elif results_table_id is None:
+                raise dash.exceptions.PreventUpdate()
             elif export_results_btn_id in change_id:
                 results_df = pd.DataFrame(results_table)
-                return self.export_to_csv(results_df)
+                movie_info_df = pd.DataFrame(movie_info_data)
+                final_output_df = pd.merge(
+                    results_df, movie_info_df, on=movie_id_column, how="inner"
+                )
+                return self.export_to_csv(final_output_df)
             else:
                 raise dash.exceptions.PreventUpdate()
 
