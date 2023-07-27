@@ -47,6 +47,45 @@ export_btn_text = "Export Results"
 
 revenue_prediction_column = "Revenue Prediction"
 
+runtime_column = "Runtime"
+
+imdb_votes_column = "imdbVotes"
+
+metascore_column = "Metascore"
+
+imdb_rating_column = "imdbRating"
+
+awards_column = "Awards"
+
+created_award_status_column = "Award Status"
+
+award_status_reference_column = "Award Status_No Award or Nomination"
+
+award_win_value = "Win"
+
+award_nom_value = "Nominated"
+
+award_no_award_value = "No Award or Nomination"
+
+win_text_identifier = "win"
+
+nom_text_identifier = "nom"
+
+model_all_columns = [
+    runtime_column,
+    imdb_votes_column,
+    metascore_column,
+    imdb_rating_column,
+    awards_column,
+]
+
+model_numeric_columns = [
+    runtime_column,
+    imdb_votes_column,
+    metascore_column,
+    imdb_rating_column,
+]
+
 cpi_dict = {
     1913: 9.9,
     1914: 10,
