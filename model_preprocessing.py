@@ -35,21 +35,9 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
 
     Transform: perform the necessary transformations on the data."""
 
-    def __init__(
-        self,
-        nomination_condition,
-        award_condition,
-        award_true: str,
-        nom_true: str,
-        no_award: str,
-    ):
+    def __init__(self):
         """Initialization method for the class."""
 
-        self.nomination_condition = nomination_condition
-        self.award_condition = award_condition
-        self.award_true = award_true
-        self.nom_true = nom_true
-        self.no_award = no_award
         self.numeric_imputer = SimpleImputer(strategy="mean")
 
     def fit(self, X: pd.DataFrame) -> "FeatureTransformer":
@@ -63,6 +51,7 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
 
         X[runtime_column] = X[runtime_column].str.extract(r"(\d+)").astype(float)
         X[imdb_votes_column] = X[imdb_votes_column].str.extract(r"(\d+)").astype(float)
+        X[awards_column] = X[awards_column].str.lower()
         self.numeric_imputer.fit(X[model_numeric_columns])
         return self
 
@@ -87,17 +76,9 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
                 X[imdb_votes_column].str.extract(r"(\d+)").astype(float)
             )
 
-        X[awards_column] = X[awards_column].str.lower()
-        X[created_award_status_column] = np.where(
-            self.award_condition,
-            self.award_true,
-            np.where(self.nomination_condition, self.nom_true, self.no_award),
-        )
         X[model_numeric_columns] = self.numeric_imputer.transform(
             X[model_numeric_columns]
         )
-        X = pd.get_dummies(X, columns=[created_award_status_column])
-        X.drop([award_status_reference_column, awards_column], axis=1, inplace=True)
 
         return X
 
@@ -117,13 +98,15 @@ class CustomPreprocessor:
 
     Transform: perform the necessary transformations on the data."""
 
-    def __init__(self, training_data: pd.DataFrame):
+    def __init__(self, award_win_value, award_nom_value, award_no_award_value):
         """Method to initialize the class."""
 
         self.preprocessor = None
-        self.training_df = training_data
+        self.award_true = (award_win_value,)
+        self.nom_true = (award_nom_value,)
+        self.no_award = (award_no_award_value,)
 
-    def fit(self):
+    def fit(self, initial_df: pd.DataFrame) -> None:
         """Method that creates the transformation pipeline and leverages the
         FeatureTransformer class."""
 
@@ -131,26 +114,14 @@ class CustomPreprocessor:
             transformers=[
                 (
                     "preprocessing",
-                    FeatureTransformer(
-                        award_condition=self.training_df[awards_column].str.contains(
-                            win_text_identifier
-                        )
-                        == True,
-                        award_true=award_win_value,
-                        nomination_condition=self.training_df[
-                            awards_column
-                        ].str.contains(nom_text_identifier)
-                        == True,
-                        nom_true=award_nom_value,
-                        no_award=award_no_award_value,
-                    ),
+                    FeatureTransformer(),
                     model_all_columns,
                 ),
             ],
             verbose_feature_names_out=False,
         )
 
-        self.preprocessor.fit(self.training_df)
+        self.preprocessor.fit(initial_df)
 
         return self
 
@@ -166,8 +137,26 @@ class CustomPreprocessor:
 
         X_new = new_data.copy()
 
-        X_new_preprocessed = self.preprocessor.transform(X_new)
-        return X_new_preprocessed
+        X = self.preprocessor.transform(X_new)
+        X[created_award_status_column] = np.where(
+            X[awards_column].str.contains(win_text_identifier) == True,
+            self.award_true,
+            np.where(
+                X[awards_column].str.contains(nom_text_identifier) == True,
+                self.nom_true,
+                self.no_award,
+            ),
+        )
+
+        X = pd.get_dummies(X, columns=[created_award_status_column])
+
+        if award_status_reference_column in X.columns:
+            X.drop([award_status_reference_column, awards_column], axis=1, inplace=True)
+        else:
+            s2 = [col for col in X.columns if created_award_status_column in col]
+            X.drop([s2[0], awards_column], axis=1, inplace=True)
+
+        return X
 
     def save(self, filepath: str) -> None:
         """Method to save down the preprocessor attribute.
