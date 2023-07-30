@@ -1,4 +1,6 @@
 # ------------------------------Variables for API and Excel Upload------------------------#
+import re
+
 tab_one_label = "Import Movie Data"
 
 upload_file_message = "Upload CSV or Excel"
@@ -29,9 +31,9 @@ total_time_label = "Total Time for API Pull"
 
 avg_time_label = "Avg. Time Per API Request"
 
-default_total_time = "0 seconds"
+default_total_time = "0 Seconds"
 
-default_avg_time = "0 s/request"
+default_avg_time = "0 S/Request"
 
 movie_id_column = "imdbID"
 
@@ -71,12 +73,45 @@ win_text_identifier = "win"
 
 nom_text_identifier = "nom"
 
+oscar_win_value = "Oscar Win"
+
+oscar_nom_value = "Oscar Nom"
+
+nom_keyword = "nom"
+won_keyword = "won"
+oscar_keyword = "oscar"
+
+oscar_win_regex = rf"{re.escape(won_keyword)}.*{re.escape(oscar_keyword)}|{re.escape(oscar_keyword)}.*{re.escape(won_keyword)}"
+
+oscar_nom_regex = rf"{re.escape(nom_keyword)}.*{re.escape(oscar_keyword)}|{re.escape(oscar_keyword)}.*{re.escape(nom_keyword)}"
+
+genre_column = "Genre"
+
+top_genre_column = "FirstGrenre"
+
+created_genre_column = "Genre Group"
+
+action_value = "action"
+adventure_value = "adventure"
+comedy_value = "comedy"
+horror_value = "horror"
+animation_value = "animation"
+drama_value = "drama"
+thriller_value = "thriller"
+
+action_adv_value = "Action/Adventure"
+drama_thriller_value = "Drama/Thriller"
+other_genre_value = "Other"
+
+genre_reference_column = "Genre Group_Other"
+
 model_all_columns = [
     runtime_column,
     imdb_votes_column,
     metascore_column,
     imdb_rating_column,
     awards_column,
+    genre_column,
 ]
 
 model_numeric_columns = [

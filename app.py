@@ -36,6 +36,7 @@ class DashApp:
 
         self.ExcelImportExport.app_upload_file(self.app)
         self.APIRequests.import_movie_data_app(self.app)
+        self.ExcelImportExport.app_model_result_export(self.app)
 
     def run(self):
         webbrowser.open_new("http://127.0.0.1:8050/")
