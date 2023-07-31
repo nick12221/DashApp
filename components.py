@@ -2,7 +2,7 @@ from config import *
 from component_ids import *
 from dash import Dash, html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
-import plotly.graph_objects as go
+import plotly.express as px
 import dash_bootstrap_components as dbc
 
 # Components for api and excel functionality
@@ -114,8 +114,34 @@ model_prediction_btn = html.Button(
 export_results_btn = html.Button(export_btn_text, id=export_results_btn_id, n_clicks=0)
 
 model_coefficients_graph = dcc.Graph(
-    id=model_coefs_div_id, config={"displayModeBar": False}
+    id=model_coefs_div_id,
+    figure=px.bar(
+        model_result_df,
+        x="Model Coefficients",
+        y="Model Variables",
+        orientation="h",
+        color="Statistically Significant",
+        text_auto=True,
+    )
+    .update_layout(
+        title="Model Coefficients (Logged Y Variable)",
+        xaxis_title=None,
+        yaxis_title=None,
+        legend=dict(orientation="h", yanchor="bottom", y=-0.15),
+        xaxis=dict(showticklabels=False),
+        yaxis=dict(tickfont=dict(size=12)),
+        autosize=True,
+        title_x=0.5,
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="#fafafa",
+        margin=dict(l=1, r=1, b=1),
+        yaxis2=dict(anchor="free", position=0.02, side="right"),
+    )
+    .update_traces(textposition="outside", textfont_size=10, textfont_color="black")
+    .update_xaxes(range=[-28, 140]),
+    config={"displayModeBar": False},
 )
+
 
 # Table with results
 result_table = dt.DataTable(

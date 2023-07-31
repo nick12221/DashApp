@@ -1,5 +1,6 @@
 # ------------------------------Variables for API and Excel Upload------------------------#
 import re
+import pandas as pd
 
 tab_one_label = "Import Movie Data"
 
@@ -234,3 +235,138 @@ cpi_dict = {
     2022: 292.7,
     2023: 309.6,
 }
+
+model_variables_column = "Model Variables"
+model_coef_column = "Model Coefficients"
+model_sig_col = "Statistically Significant"
+
+model_result_df = pd.DataFrame(
+    [
+        {
+            "Variables": "Const",
+            "Coefficients": 1.601803946142876,
+            "Coef Std. Errors": 0.4162082836343957,
+            "T Stat": 3.8485633494741474,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Intercept",
+            "Model Coefficients": 1.6,
+        },
+        {
+            "Variables": "Runtime",
+            "Coefficients": 0.0017131149639807,
+            "Coef Std. Errors": 0.0023839557857945,
+            "T Stat": 0.7186018189552016,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Runtime",
+            "Model Coefficients": 0.17,
+        },
+        {
+            "Variables": "Imdbvotes",
+            "Coefficients": 0.0012989822527303,
+            "Coef Std. Errors": 0.0002595763990365,
+            "T Stat": 5.004238665578968,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Imdbvotes",
+            "Model Coefficients": 0.13,
+        },
+        {
+            "Variables": "Metascore",
+            "Coefficients": 0.0010573445418105,
+            "Coef Std. Errors": 0.0037789309656513,
+            "T Stat": 0.2797999093979966,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Metascore",
+            "Model Coefficients": 0.11,
+        },
+        {
+            "Variables": "Imdbrating",
+            "Coefficients": 0.2503866032167136,
+            "Coef Std. Errors": 0.0671451709342137,
+            "T Stat": 3.729033670374193,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Imdbrating",
+            "Model Coefficients": 25.04,
+        },
+        {
+            "Variables": "Award Status_Nominated",
+            "Coefficients": -0.0466171599530549,
+            "Coef Std. Errors": 0.1431552082232534,
+            "T Stat": -0.3256406842030822,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Award Status_Nominated",
+            "Model Coefficients": -4.66,
+        },
+        {
+            "Variables": "Award Status_Oscar Nom",
+            "Coefficients": 0.0854481517482054,
+            "Coef Std. Errors": 0.1880317611859768,
+            "T Stat": 0.4544346721493033,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Award Status_Oscar Nom",
+            "Model Coefficients": 8.54,
+        },
+        {
+            "Variables": "Award Status_Oscar Win",
+            "Coefficients": 0.6190942540249608,
+            "Coef Std. Errors": 0.2191627227338449,
+            "T Stat": 2.824815490072186,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Award Status_Oscar Win",
+            "Model Coefficients": 61.91,
+        },
+        {
+            "Variables": "Award Status_Win",
+            "Coefficients": 0.0295613415490763,
+            "Coef Std. Errors": 0.1305522639401608,
+            "T Stat": 0.2264330058851056,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Award Status_Win",
+            "Model Coefficients": 2.96,
+        },
+        {
+            "Variables": "Genre Group_Action/Adventure",
+            "Coefficients": 0.5663531735422882,
+            "Coef Std. Errors": 0.136541031384468,
+            "T Stat": 4.147860667227337,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Genre Group_Action/Adventure",
+            "Model Coefficients": 56.64,
+        },
+        {
+            "Variables": "Genre Group_Animation",
+            "Coefficients": 1.112744304017152,
+            "Coef Std. Errors": 0.2704939826622058,
+            "T Stat": 4.113748827480396,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Genre Group_Animation",
+            "Model Coefficients": 111.27,
+        },
+        {
+            "Variables": "Genre Group_Comedy",
+            "Coefficients": 0.4285182903033628,
+            "Coef Std. Errors": 0.1276356031275182,
+            "T Stat": 3.357357036776318,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Genre Group_Comedy",
+            "Model Coefficients": 42.85,
+        },
+        {
+            "Variables": "Genre Group_Drama/Thriller",
+            "Coefficients": 0.3621901081985116,
+            "Coef Std. Errors": 0.1370862921941632,
+            "T Stat": 2.6420592635587576,
+            "Statistically Significant": "Significant",
+            "Model Variables": "Genre Group_Drama/Thriller",
+            "Model Coefficients": 36.22,
+        },
+        {
+            "Variables": "Genre Group_Horror",
+            "Coefficients": -0.0060434995219333,
+            "Coef Std. Errors": 0.2858471390285781,
+            "T Stat": -0.02114241738599,
+            "Statistically Significant": "Not Significant",
+            "Model Variables": "Genre Group_Horror",
+            "Model Coefficients": -0.6,
+        },
+    ]
+)
