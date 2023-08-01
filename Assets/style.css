@@ -104,7 +104,7 @@
     padding-left: .4vw;
     padding-right: .4vw;
     text-align: center;
-    width: 16vw;
+    width: 13vw;
     text-decoration: none;
     font-size: 1.9vh;
     margin-right: 1vw;
@@ -121,7 +121,7 @@
     padding-left: .4vw;
     padding-right: .4vw;
     text-align: center;
-    width: 16vw;
+    width: 13vw;
     text-decoration: none;
     font-size: 1.9vh;
     margin-right: 1vw;
@@ -132,7 +132,7 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     height: 6vh;}
 
-#model-coefficients-graph-id {width: 30vw; background-color: #fafafa; height:48vh;}
+#model-coefficients-graph-id {width: 35vw; background-color: #fafafa; height:51vh;}
 
 
 #instructions-for-app-id {font-size:1.8vh;

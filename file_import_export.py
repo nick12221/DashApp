@@ -122,7 +122,7 @@ class FileImportExport:
 
             if export_clicks == 0:
                 raise dash.exceptions.PreventUpdate()
-            elif results_table_id is None:
+            elif results_table is None:
                 raise dash.exceptions.PreventUpdate()
             elif export_results_btn_id in change_id:
                 results_df = pd.DataFrame(results_table)

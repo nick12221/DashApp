@@ -90,9 +90,11 @@ instructions_pulling_movies_form = dbc.Form(
     
     - User-friendly interface and controls for accessing data from the OMDB API.
     
-    - Full display of fitted model coefficients and statistical significance using my own statistical package.
+    - Full display of fitted model coefficients. Coefficients are based on a logged dependent
+      variable.
     
-    - Seamless experience to run model with data preprocessing handled by the app.
+    - Seamless experience to run model using my created python package with preprocessing 
+      pipeline all handled within the app.
     
     - Just press "Predict" to predict movie revenue and then download results!
     """
@@ -120,11 +122,12 @@ model_coefficients_graph = dcc.Graph(
         x="Model Coefficients",
         y="Model Variables",
         orientation="h",
-        color="Statistically Significant",
+        color="Statistical Significance",
         text_auto=True,
+        category_orders={"Model Variables": desired_result_col_order},
     )
     .update_layout(
-        title="Model Coefficients (Logged Y Variable)",
+        title="Fitted Model Coefficients",
         xaxis_title=None,
         yaxis_title=None,
         legend=dict(orientation="h", yanchor="bottom", y=-0.15),
@@ -135,10 +138,13 @@ model_coefficients_graph = dcc.Graph(
         plot_bgcolor="#fafafa",
         paper_bgcolor="#fafafa",
         margin=dict(l=1, r=1, b=1),
-        yaxis2=dict(anchor="free", position=0.02, side="right"),
     )
-    .update_traces(textposition="outside", textfont_size=10, textfont_color="black")
-    .update_xaxes(range=[-28, 140]),
+    .update_traces(
+        textposition="outside",
+        textfont_size=11,
+        textfont_color="black",
+    )
+    .update_xaxes(range=[-1, 3]),
     config={"displayModeBar": False},
 )
 
