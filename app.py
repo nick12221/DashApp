@@ -3,6 +3,7 @@ import webbrowser
 from dash import html, dcc, no_update, dash_table as dt
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
+import joblib
 from movie_api import MovieRequests
 from file_import_export import FileImportExport
 from components import *
@@ -12,6 +13,7 @@ from component_ids import *
 class DashApp:
     def __init__(self):
         self.app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+        self.model = joblib.load("fitted_model.pkl")
         self.app.layout = html.Div(
             id=dash_app_id,
             children=[

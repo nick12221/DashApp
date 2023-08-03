@@ -4,6 +4,7 @@ import numpy as np
 from model_preprocessing import CustomPreprocessor
 from sklearn.model_selection import train_test_split
 import statsmodels.api as sm
+import joblib
 from config import *
 
 moviedata_df = pd.read_csv(r"C:\Users\nickp\movies.csv")
@@ -49,7 +50,7 @@ DataPreprocessor = CustomPreprocessor(
 DataPreprocessor.fit(x_train)
 x_train = DataPreprocessor.transform(x_train)
 x_test = DataPreprocessor.transform(x_test)
-
+DataPreprocessor.save("fitted_preprocessor.pkl")
 x_train.to_csv(r"train data.csv")
 
 # Run model
@@ -57,6 +58,8 @@ modelnick = MASA.OLSSuite()
 
 modelnick.GetOLSResults(y_train.values, x_train.values, list(x_train.columns))
 print(modelnick.Metrics)
+joblib.dump(modelnick, "fitted_model.pkl")
+
 
 print(MASA.GetVif(x_train.values))
 pd.DataFrame(modelnick.OLSResults).to_csv(r"model results.csv")
