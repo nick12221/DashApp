@@ -18,6 +18,8 @@ loading_api_import = dcc.Loading(id=api_import_loading_id)
 
 download_component = dcc.Download(id=results_download_id)
 
+loading_prediction_component = dcc.Loading(id=prediction_loading_id)
+
 # The excel upload and import from OMDB api
 upload_movie_button = dcc.Upload(
     id=upload_file_btn_id, children=html.Div([html.A(upload_file_message)])
@@ -236,6 +238,7 @@ components_div = dbc.Form(
                                     id=graph_div_id,
                                     children=[model_coefficients_graph],
                                 ),
+                                loading_prediction_component,
                                 html.Div(
                                     id=run_model_div_id,
                                     children=[

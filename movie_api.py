@@ -84,10 +84,10 @@ class MovieRequests:
                         self.get_movie_data(i)
 
                     end_time = time.time()
-                    total_time = str(round(end_time - start_time, 2)) + " seconds"
+                    total_time = str(round(end_time - start_time, 2)) + " Sec(s)"
                     avg_time = (
                         str(round((end_time - start_time) / len(movie_list), 2))
-                        + " s/request"
+                        + " S/Request"
                     )
 
                 except Exception as e:

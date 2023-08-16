@@ -7,11 +7,22 @@ import statsmodels.api as sm
 import joblib
 from config import *
 
-moviedata_df = pd.read_csv(r"C:\Users\nickp\movies.csv")
-moviedata_df["BoxOffice"] = (
-    moviedata_df["BoxOffice"].str.extract(r"(\d+)").astype(float)
+moviedata_df = pd.read_csv(
+    r"C:\Users\nickp\movies.csv",
+    converters={
+        "Metascore": str,
+        "imdbRating": str,
+        "imdbVotes": str,
+        "BoxOffice": str,
+        "Runtime": str,
+    },
 )
-
+moviedata_df["BoxOffice"] = (
+    moviedata_df["BoxOffice"]
+    .str.replace(",", "", regex=True)
+    .str.extract(r"(\d+)")
+    .astype(float)
+)
 
 # Remove no box office data
 good_revenue_df = moviedata_df.loc[moviedata_df["BoxOffice"].notnull()].copy()
@@ -33,19 +44,7 @@ x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.2, random_state=14
 )
 
-DataPreprocessor = CustomPreprocessor(
-    oscar_win=oscar_win_value,
-    oscar_nom=oscar_nom_value,
-    award_win_value=award_win_value,
-    award_nom_value=award_nom_value,
-    award_no_award_value=award_no_award_value,
-    action_adventure=action_adv_value,
-    drama_thriller=drama_thriller_value,
-    comedy=comedy_value.title(),
-    horror=horror_value.title(),
-    animation=animation_value.title(),
-    other_genre=other_genre_value,
-)
+DataPreprocessor = CustomPreprocessor()
 
 DataPreprocessor.fit(x_train)
 x_train = DataPreprocessor.transform(x_train)

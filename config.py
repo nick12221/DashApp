@@ -48,6 +48,8 @@ model_run_btn_text = "Predict"
 
 export_btn_text = "Export Results"
 
+movie_title_column = "Title"
+
 revenue_prediction_column = "Revenue Prediction"
 
 runtime_column = "Runtime"
@@ -62,13 +64,13 @@ awards_column = "Awards"
 
 created_award_status_column = "Award Status"
 
-award_status_reference_column = "Award Status_No Award or Nomination"
+award_status_reference_column = "Award Status_No Award Or Nomination"
 
-award_win_value = "Win"
+award_win_value = "Other Win"
 
-award_nom_value = "Nominated"
+award_nom_value = "Other Nom"
 
-award_no_award_value = "No Award or Nomination"
+award_no_award_value = "No Award Or Nomination"
 
 win_text_identifier = "win"
 
@@ -88,7 +90,7 @@ oscar_nom_regex = rf"{re.escape(nom_keyword)}.*{re.escape(oscar_keyword)}|{re.es
 
 genre_column = "Genre"
 
-top_genre_column = "FirstGrenre"
+top_genre_column = "First_Genre"
 
 created_genre_column = "Genre Group"
 
@@ -110,7 +112,6 @@ model_all_columns = [
     runtime_column,
     imdb_votes_column,
     metascore_column,
-    imdb_rating_column,
     awards_column,
     genre_column,
 ]
@@ -119,7 +120,6 @@ model_numeric_columns = [
     runtime_column,
     imdb_votes_column,
     metascore_column,
-    imdb_rating_column,
 ]
 
 cpi_dict = {
@@ -243,140 +243,130 @@ model_sig_col = "Statistically Significant"
 model_result_df = pd.DataFrame(
     [
         {
-            "Variables": "Const",
-            "Coefficients": 1.601803946142876,
-            "Coef Std. Errors": 0.4162082836343957,
-            "T Stat": 3.8485633494741474,
+            "Variables": "const",
+            "Coefficients": 11.328452815404646,
+            "Coef Std. Errors": 0.4726887805166729,
+            "T Stat": 23.965986252142624,
             "Statistical Significance": "Significant",
-            "Model Variables": "Intercept",
-            "Model Coefficients": 1.602,
+            "Model Variables": "Const",
+            "Model Coefficients": 11.328,
         },
         {
             "Variables": "Runtime",
-            "Coefficients": 0.0017131149639807,
-            "Coef Std. Errors": 0.0023839557857945,
-            "T Stat": 0.7186018189552016,
-            "Statistical Significance": "Not Significant",
+            "Coefficients": 0.0309157858245032,
+            "Coef Std. Errors": 0.0035509725752136,
+            "T Stat": 8.706286846679777,
+            "Statistical Significance": "Significant",
             "Model Variables": "Runtime",
-            "Model Coefficients": 0.002,
+            "Model Coefficients": 0.031,
         },
         {
-            "Variables": "Imdbvotes",
-            "Coefficients": 0.0012989822527303,
-            "Coef Std. Errors": 0.0002595763990365,
-            "T Stat": 5.004238665578968,
+            "Variables": "imdbVotes",
+            "Coefficients": 3.037860474400006e-06,
+            "Coef Std. Errors": 3.552023828123152e-07,
+            "T Stat": 8.552477746201316,
             "Statistical Significance": "Significant",
             "Model Variables": "Imdbvotes",
-            "Model Coefficients": 0.001,
+            "Model Coefficients": 0.0,
         },
         {
             "Variables": "Metascore",
-            "Coefficients": 0.0010573445418105,
-            "Coef Std. Errors": 0.0037789309656513,
-            "T Stat": 0.2797999093979966,
-            "Statistical Significance": "Not Significant",
-            "Model Variables": "Metascore",
-            "Model Coefficients": 0.001,
-        },
-        {
-            "Variables": "Imdbrating",
-            "Coefficients": 0.2503866032167136,
-            "Coef Std. Errors": 0.0671451709342137,
-            "T Stat": 3.729033670374193,
+            "Coefficients": -0.0163840939750329,
+            "Coef Std. Errors": 0.004453505029385,
+            "T Stat": -3.6789211793694183,
             "Statistical Significance": "Significant",
-            "Model Variables": "Imdbrating",
-            "Model Coefficients": 0.25,
+            "Model Variables": "Metascore",
+            "Model Coefficients": -0.016,
         },
         {
             "Variables": "Award Status_Nominated",
-            "Coefficients": -0.0466171599530549,
-            "Coef Std. Errors": 0.1431552082232534,
-            "T Stat": -0.3256406842030822,
-            "Statistical Significance": "Not Significant",
+            "Coefficients": 0.8876116237866021,
+            "Coef Std. Errors": 0.1998641345294214,
+            "T Stat": 4.441075062699353,
+            "Statistical Significance": "Significant",
             "Model Variables": "Award Status_Other Nom",
-            "Model Coefficients": -0.047,
+            "Model Coefficients": 0.888,
         },
         {
             "Variables": "Award Status_Oscar Nom",
-            "Coefficients": 0.0854481517482054,
-            "Coef Std. Errors": 0.1880317611859768,
-            "T Stat": 0.4544346721493033,
-            "Statistical Significance": "Not Significant",
+            "Coefficients": 2.304281457633836,
+            "Coef Std. Errors": 0.2568369472850357,
+            "T Stat": 8.971767816086686,
+            "Statistical Significance": "Significant",
             "Model Variables": "Award Status_Oscar Nom",
-            "Model Coefficients": 0.085,
+            "Model Coefficients": 2.304,
         },
         {
             "Variables": "Award Status_Oscar Win",
-            "Coefficients": 0.6190942540249608,
-            "Coef Std. Errors": 0.2191627227338449,
-            "T Stat": 2.824815490072186,
+            "Coefficients": 2.493833705931512,
+            "Coef Std. Errors": 0.3128062407868569,
+            "T Stat": 7.972455088038941,
             "Statistical Significance": "Significant",
             "Model Variables": "Award Status_Oscar Win",
-            "Model Coefficients": 0.619,
+            "Model Coefficients": 2.494,
         },
         {
             "Variables": "Award Status_Win",
-            "Coefficients": 0.0295613415490763,
-            "Coef Std. Errors": 0.1305522639401608,
-            "T Stat": 0.2264330058851056,
-            "Statistical Significance": "Not Significant",
+            "Coefficients": 0.8627530673029853,
+            "Coef Std. Errors": 0.1773186898582524,
+            "T Stat": 4.86555065341767,
+            "Statistical Significance": "Significant",
             "Model Variables": "Award Status_Other Win",
-            "Model Coefficients": 0.03,
+            "Model Coefficients": 0.863,
         },
         {
             "Variables": "Genre Group_Action/Adventure",
-            "Coefficients": 0.5663531735422882,
-            "Coef Std. Errors": 0.136541031384468,
-            "T Stat": 4.147860667227337,
+            "Coefficients": 2.037700024384578,
+            "Coef Std. Errors": 0.1887661496931849,
+            "T Stat": 10.79483809833806,
             "Statistical Significance": "Significant",
             "Model Variables": "Genre Group_Action/Adventure",
-            "Model Coefficients": 0.566,
-        },
-        {
-            "Variables": "Genre Group_Animation",
-            "Coefficients": 1.112744304017152,
-            "Coef Std. Errors": 0.2704939826622058,
-            "T Stat": 4.113748827480396,
-            "Statistical Significance": "Significant",
-            "Model Variables": "Genre Group_Animation",
-            "Model Coefficients": 1.113,
-        },
-        {
-            "Variables": "Genre Group_Comedy",
-            "Coefficients": 0.4285182903033628,
-            "Coef Std. Errors": 0.1276356031275182,
-            "T Stat": 3.357357036776318,
-            "Statistical Significance": "Significant",
-            "Model Variables": "Genre Group_Comedy",
-            "Model Coefficients": 0.429,
+            "Model Coefficients": 2.038,
         },
         {
             "Variables": "Genre Group_Drama/Thriller",
-            "Coefficients": 0.3621901081985116,
-            "Coef Std. Errors": 0.1370862921941632,
-            "T Stat": 2.6420592635587576,
-            "Statistical Significance": "Significant",
+            "Coefficients": -0.0251200885711694,
+            "Coef Std. Errors": 0.1892306616500462,
+            "T Stat": -0.132748511008355,
+            "Statistical Significance": "Not Significant",
             "Model Variables": "Genre Group_Drama/Thriller",
-            "Model Coefficients": 0.362,
+            "Model Coefficients": -0.025,
         },
         {
-            "Variables": "Genre Group_Horror",
-            "Coefficients": -0.0060434995219333,
-            "Coef Std. Errors": 0.2858471390285781,
-            "T Stat": -0.02114241738599,
-            "Statistical Significance": "Not Significant",
+            "Variables": "Genre Group_animation",
+            "Coefficients": 2.4233068004757667,
+            "Coef Std. Errors": 0.3645497079286936,
+            "T Stat": 6.64739745436792,
+            "Statistical Significance": "Significant",
+            "Model Variables": "Genre Group_Animation",
+            "Model Coefficients": 2.423,
+        },
+        {
+            "Variables": "Genre Group_comedy",
+            "Coefficients": 1.3165391681216243,
+            "Coef Std. Errors": 0.1757574406688302,
+            "T Stat": 7.490659644972323,
+            "Statistical Significance": "Significant",
+            "Model Variables": "Genre Group_Comedy",
+            "Model Coefficients": 1.317,
+        },
+        {
+            "Variables": "Genre Group_horror",
+            "Coefficients": 1.5903217558689529,
+            "Coef Std. Errors": 0.3855366221349809,
+            "T Stat": 4.12495639729956,
+            "Statistical Significance": "Significant",
             "Model Variables": "Genre Group_Horror",
-            "Model Coefficients": -0.006,
+            "Model Coefficients": 1.59,
         },
     ]
 )
 
 desired_result_col_order = [
-    "Intercept",
+    "Const",
     "Runtime",
     "Imdbvotes",
     "Metascore",
-    "Imdbrating",
     "Award Status_Other Nom",
     "Award Status_Other Win",
     "Award Status_Oscar Nom",
@@ -386,4 +376,9 @@ desired_result_col_order = [
     "Genre Group_Comedy",
     "Genre Group_Drama/Thriller",
     "Genre Group_Horror",
+]
+
+all_columns = desired_result_col_order + [
+    genre_reference_column,
+    award_status_reference_column,
 ]

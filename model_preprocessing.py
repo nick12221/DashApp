@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 from sklearn.base import TransformerMixin, BaseEstimator
-from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 import statsmodels.api as sm
@@ -40,8 +39,14 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
 
         Returns: Self."""
 
-        X[runtime_column] = X[runtime_column].str.extract(r"(\d+)").astype(float)
-        X[imdb_votes_column] = X[imdb_votes_column].str.extract(r"(\d+)").astype(float)
+        for i in model_numeric_columns:
+            X[i] = (
+                X[i]
+                .str.replace(",", "", regex=True)
+                .str.extract(r"(\d+)")
+                .astype(float)
+            )
+
         self.numeric_imputer.fit(X[model_numeric_columns])
         return self
 
@@ -54,17 +59,35 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
 
         Returns: Transformed Pandas Dataframe."""
 
-        if pd.api.types.is_numeric_dtype(X[runtime_column]) == True:
-            pass
-        else:
-            X[runtime_column] = X[runtime_column].str.extract(r"(\d+)").astype(float)
-
-        if pd.api.types.is_numeric_dtype(X[imdb_votes_column]) == True:
-            pass
-        else:
-            X[imdb_votes_column] = (
-                X[imdb_votes_column].str.extract(r"(\d+)").astype(float)
+        if pd.api.types.is_numeric_dtype(X[runtime_column]) == False:
+            X[runtime_column] = (
+                X[runtime_column]
+                .str.replace(",", "", regex=True)
+                .str.extract(r"(\d+)")
+                .astype(float)
             )
+        else:
+            pass
+
+        if pd.api.types.is_numeric_dtype(X[imdb_votes_column]) == False:
+            X[imdb_votes_column] = (
+                X[imdb_votes_column]
+                .str.replace(",", "", regex=True)
+                .str.extract(r"(\d+)")
+                .astype(float)
+            )
+        else:
+            pass
+
+        if pd.api.types.is_numeric_dtype(X[metascore_column]) == False:
+            X[metascore_column] = (
+                X[metascore_column]
+                .str.replace(",", "", regex=True)
+                .str.extract(r"(\d+)")
+                .astype(float)
+            )
+        else:
+            pass
 
         X[model_numeric_columns] = self.numeric_imputer.transform(
             X[model_numeric_columns]
@@ -102,32 +125,22 @@ class CustomPreprocessor:
 
     def __init__(
         self,
-        oscar_win,
-        oscar_nom,
-        award_win_value,
-        award_nom_value,
-        award_no_award_value,
-        action_adventure,
-        drama_thriller,
-        comedy,
-        horror,
-        animation,
-        other_genre,
+        preprocessor=None,
     ):
         """Method to initialize the class."""
 
-        self.preprocessor = None
-        self.oscar_win = oscar_win
-        self.oscar_nom = oscar_nom
+        self.preprocessor = preprocessor
+        self.oscar_win = oscar_win_value
+        self.oscar_nom = oscar_nom_value
         self.award_true = award_win_value
         self.nom_true = award_nom_value
         self.no_award = award_no_award_value
-        self.action_adventure = action_adventure
-        self.drama_thriller = drama_thriller
-        self.comedy = comedy
-        self.horror = horror
-        self.animation = animation
-        self.other_genre = other_genre
+        self.action_adventure = action_adv_value
+        self.drama_thriller = drama_thriller_value
+        self.comedy = comedy_value
+        self.horror = horror_value
+        self.animation = animation_value
+        self.other_genre = other_genre_value
 
     def fit(self, initial_df: pd.DataFrame) -> None:
         """Method that creates the transformation pipeline and leverages the
@@ -210,25 +223,26 @@ class CustomPreprocessor:
             X, columns=[created_award_status_column, created_genre_column]
         )
 
-        if award_status_reference_column in X.columns:
-            X.drop([award_status_reference_column, awards_column], axis=1, inplace=True)
-        else:
-            award_cols = [
-                col for col in X.columns if created_award_status_column in col
-            ]
-            X.drop([award_cols[0], awards_column], axis=1, inplace=True)
+        X.columns = [col.title() for col in X.columns]
 
-        if genre_reference_column in X.columns:
-            X.drop(
-                [genre_reference_column, genre_column, top_genre_column],
-                axis=1,
-                inplace=True,
-            )
+        missing_columns = list(set(all_columns) - set(X.columns))
+
+        if len(missing_columns) == 0:
+            pass
         else:
-            genre_cols = [col for col in X.columns if created_genre_column in col]
-            X.drop(
-                [genre_cols[0], genre_column, top_genre_column], axis=1, inplace=True
-            )
+            X.loc[:, missing_columns] = 0
+
+        X.drop(
+            [
+                award_status_reference_column,
+                awards_column,
+                genre_reference_column,
+                genre_column,
+                top_genre_column,
+            ],
+            axis=1,
+            inplace=True,
+        )
 
         return X
 
