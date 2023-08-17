@@ -14,7 +14,30 @@ from component_ids import *
 
 
 class DashApp:
-    """Class for the dash app"""
+    """Class for the dash app
+
+    Attributes
+    ----------
+
+    app: The model app
+
+    model: The pretrained model to load
+
+    preprocessor: The pretrained pipeline
+
+    app layout: The layout of the application
+
+    APIRequests: Loaded class for api request
+
+    ExcelImportExport: Loaded class for importing/exporting csv files
+
+    modelPrediction: Loaded class for model predictions
+
+    Methods
+    -------
+
+    run: Run the dash app
+    """
 
     def __init__(self):
         self.app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
