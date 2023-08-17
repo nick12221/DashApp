@@ -14,6 +14,8 @@ from component_ids import *
 
 
 class DashApp:
+    """Class for the dash app"""
+
     def __init__(self):
         self.app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
         self.model = joblib.load("fitted_model.pkl")

@@ -15,11 +15,13 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
     """Class for creating custom fit and transform method for feature transformation.
     Inherits from the BaseEstimator and TransformerMixin classes of scikit-learn.
 
-    Attributes:
+    Attributes
+    ----------
 
     numeric_imputer: The imputer to use for missing numeric values.
 
-    Methods:
+    Methods
+    ---------
 
     fit: Get params of training data to use on the test dataset.
 
@@ -103,7 +105,8 @@ class FeatureTransformer(BaseEstimator, TransformerMixin):
 class CustomPreprocessor:
     """Class for creating a model preprocessing pipeline and fitting and transforming data.
 
-    Attributes:
+    Attributes
+    ----------
 
     oscar_win: value for indicating oscar win.
 
@@ -117,7 +120,8 @@ class CustomPreprocessor:
 
     preprocessor: Use column transformer to create execution plan of preprocessing steps.
 
-    Methods:
+    Methods
+    -------
 
     fit: Get params of training data to use on the test dataset.
 

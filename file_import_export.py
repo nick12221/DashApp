@@ -128,7 +128,7 @@ class FileImportExport:
                 results_df = pd.DataFrame(results_table)
                 movie_info_df = pd.DataFrame(movie_info_data)
                 final_output_df = pd.merge(
-                    results_df, movie_info_df, on=movie_id_column, how="inner"
+                    results_df, movie_info_df, on=movie_title_column, how="inner"
                 )
                 return self.export_to_csv(final_output_df)
             else:

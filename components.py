@@ -165,10 +165,20 @@ result_table = dt.DataTable(
         "fontSize": "2.5vh",
         "boxShadow": "0px 8px 20px rgba(0, 0, 0, 0.2)",
         "border": "1px solid #ddd",
+        "font-size": "2vh",
     },
+    style_cell={
+        "textAlign": "left",
+        "whiteSpace": "normal",
+        "backgroundColor": "#fafafa",
+    },
+    style_table={"height": "42.5vh", "overflowY": "auto"},
     columns=[
         {"name": file_title_column_name, "id": file_title_column_name},
-        {"name": revenue_prediction_column, "id": revenue_prediction_column},
+        {
+            "name": revenue_prediction_column,
+            "id": revenue_prediction_column,
+        },
     ],
 )
 
